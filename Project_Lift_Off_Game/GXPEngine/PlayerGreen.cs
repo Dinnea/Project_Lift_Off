@@ -5,15 +5,15 @@ using System.Text;
 
 using GXPEngine;
 
-class PlayerRed : Sprite
-{
-    private float speed = 0.5f;
+class PlayerGreen : Sprite
+ {
+    private float speed = 1.0f;
     private float xSpeed;
     private float ySpeed;
 
     private GameObject[] colliders;
 
-    public PlayerRed() : base("circle2.png")
+    public PlayerGreen() : base("circle.png")
     {
         List<GameObject> setCollisions;
         setCollisions = new List<GameObject>();
@@ -26,8 +26,8 @@ class PlayerRed : Sprite
 
         SetOrigin(width / 2f, height / 2f);
 
-        this.x = game.width / 3;
-        this.y = game.height / 3;
+        this.x = game.width/2;
+        this.y = game.height/2;
 
     }
 
@@ -39,22 +39,22 @@ class PlayerRed : Sprite
         xSpeed = 0;
         ySpeed = 0;
 
-        if (Input.GetKey(Key.A))
+        if (Input.GetKey(Key.LEFT))
         {
             xSpeed = -speed;
         }
 
-        if (Input.GetKey(Key.D))
+        if (Input.GetKey(Key.RIGHT))
         {
             xSpeed = speed;
         }
 
-        if (Input.GetKey(Key.W))
+        if (Input.GetKey(Key.UP))
         {
             ySpeed = -speed;
         }
 
-        if (Input.GetKey(Key.S))
+        if (Input.GetKey(Key.DOWN))
         {
             ySpeed = speed;
         }
@@ -64,7 +64,8 @@ class PlayerRed : Sprite
 
     public void OnCollision(GameObject other)
     {
-
+      
     }
 
-}
+ }
+

@@ -16,6 +16,7 @@ public class Wall : Sprite
 
         this.x = 200;
         this.y = 300;
+
     }
 }
 

@@ -76,7 +76,8 @@
     <Compile Include="GXPEngine\FMOD\FMODSoundSystem.cs" />
     <Compile Include="GXPEngine\SoLoud\Soloud.cs" />
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
-    <Compile Include="Player1.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="PlayerGreen.cs" />
     <Compile Include="PlayerRed.cs" />
     <Compile Include="Wall.cs" />
   </ItemGroup>

@@ -4,23 +4,25 @@ using GXPEngine;								// GXPEngine contains the engine
 
 public class MyGame : Game
 {
-
 	PlayerGreen player1;
 	PlayerRed player2;
 	Wall wall;
+	Level level;
 
 
-	public MyGame() : base(800, 600, false)		// Create a window that's 800x600 and NOT fullscreen
+	public MyGame() : base(1500, 800, false)		// Create a window that's 800x600 and NOT fullscreen
 	{
-		wall = new Wall();
-		AddChild(wall);
+		/*wall = new Wall();
+		AddChild(wall);*/
+
+		level = new Level();
+		AddChild(level);
 
 		player1 = new PlayerGreen();
 		AddChild(player1);
 
 		player2 = new PlayerRed();
 		AddChild(player2);
-
 	}
 
 

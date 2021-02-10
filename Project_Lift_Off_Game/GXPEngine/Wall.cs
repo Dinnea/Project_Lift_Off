@@ -12,11 +12,7 @@ public class Wall : Sprite
 
     public Wall() : base("square.png")
     {
-        SetOrigin(this.width / 2f, this.height / 2f);
-
-        this.x = 200;
-        this.y = 300;
-
+        SetOrigin(this.x/2, this.y/2);
     }
 }
 

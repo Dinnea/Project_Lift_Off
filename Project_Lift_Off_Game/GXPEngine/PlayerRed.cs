@@ -29,6 +29,8 @@ class PlayerRed : Sprite
         this.x = game.width / 3;
         this.y = game.height / 3;
 
+        SetScaleXY(0.7f, 0.7f);
+
     }
 
 

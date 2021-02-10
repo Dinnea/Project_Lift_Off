@@ -13,8 +13,12 @@ class PlayerGreen : Sprite
 
     private GameObject[] colliders;
 
+    public int storedKeys; // Howmany keys the player holds. 
+
     public PlayerGreen() : base("circle.png")
     {
+        storedKeys = 0;
+
         List<GameObject> setCollisions;
         setCollisions = new List<GameObject>();
 
@@ -28,6 +32,8 @@ class PlayerGreen : Sprite
 
         this.x = game.width/2;
         this.y = game.height/2;
+
+        SetScaleXY(0.7f, 0.7f);
 
     }
 
@@ -59,12 +65,21 @@ class PlayerGreen : Sprite
             ySpeed = speed;
         }
 
+        //Keys (testing)
+        if (storedKeys == 3)
+        {
+            SetScaleXY(2.9f, 2.9f);
+        }
+
         MoveUntilCollision(xSpeed, ySpeed, colliders);
     }
 
     public void OnCollision(GameObject other)
     {
-      
+        if(other is Keys)
+        {
+            storedKeys = storedKeys + 1; //needs to be associated with the key..
+        }
     }
 
  }

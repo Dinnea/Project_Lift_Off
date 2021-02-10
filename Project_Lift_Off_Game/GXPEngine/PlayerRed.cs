@@ -15,10 +15,7 @@ class PlayerRed : Sprite
 
     public PlayerRed() : base("circle2.png")
     {
-        this.x = 500;
-        this.y = 600;
         SetScaleXY(0.7f, 0.7f);
-
     }
 
 

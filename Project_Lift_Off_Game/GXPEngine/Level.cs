@@ -35,6 +35,12 @@ public class Level : GameObject
             case 2:
                 newTile = new Keys();
                 break;
+            case 3:
+                newTile = new PlayerGreen();
+                break;
+            case 4:
+                newTile = new PlayerRed();
+                    break; 
         }
 
         if (newTile != null)
@@ -54,7 +60,9 @@ public class Level : GameObject
         Height = 10;
         Width = 6;
 
-        levelData = new int[,]
+        levelData = new int[,]  
+        
+                    //only add a single 3 and 4!!!
         {
             {1, 0, 0, 0, 0, 0 },  //1
             {1, 0, 0, 0, 0, 0 },  //2
@@ -65,7 +73,7 @@ public class Level : GameObject
             {1, 0, 0, 0, 1, 0 },  //7
             {0, 0, 0, 0, 0, 0 },  //8
             {0, 0, 0, 0, 0, 0 },  //9
-            {0, 0, 0, 0, 0, 0 }   //10
+            {0, 0, 3, 4, 0, 0 }   //10
         };
     }
 

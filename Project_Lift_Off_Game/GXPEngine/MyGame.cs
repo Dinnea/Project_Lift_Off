@@ -4,30 +4,16 @@ using GXPEngine;								// GXPEngine contains the engine
 
 public class MyGame : Game
 {
-	PlayerGreen player1;
-	PlayerRed player2;
-	Wall wall;
-	Keys key;
-	Level level;
-
 
 	public MyGame() : base(1500, 800, false)		// Create a window that's 800x600 and NOT fullscreen
 	{
-		/*wall = new Wall();
-		AddChild(wall);*/
+		Menu menu = new Menu();
+		AddChild(menu);
 
-		level = new Level();
-		AddChild(level);
+		/* Level level = new Level();
+		AddChild(level);*/
 
-		player1 = new PlayerGreen();
-		AddChild(player1);
-
-		player2 = new PlayerRed();
-		AddChild(player2);
-
-		/*key = new Keys();
-		AddChild(key);*/
-
+		//level.Translate(0, 50);
 	}
 
 

@@ -20,9 +20,6 @@ class PlayerGreen : Sprite
 
         SetOrigin(width / 2f, height / 2f);
 
-        this.x = game.width / 2;
-        this.y = game.height / 2;
-
         SetScaleXY(0.7f, 0.7f);
 
     }

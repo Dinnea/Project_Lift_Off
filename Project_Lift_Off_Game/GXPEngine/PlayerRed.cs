@@ -11,24 +11,12 @@ class PlayerRed : Sprite
     private float xSpeed;
     private float ySpeed;
 
-    private GameObject[] colliders;
+    
 
     public PlayerRed() : base("circle2.png")
     {
-        List<GameObject> setCollisions;
-        setCollisions = new List<GameObject>();
-
-        foreach (GameObject child in game.GetChildren(false))
-        {
-            if (child is Wall) setCollisions.Add(child);
-        }
-        colliders = setCollisions.ToArray();
-
-        SetOrigin(width / 2f, height / 2f);
-
-        this.x = game.width / 3;
-        this.y = game.height / 3;
-
+        this.x = 500;
+        this.y = 600;
         SetScaleXY(0.7f, 0.7f);
 
     }
@@ -61,12 +49,15 @@ class PlayerRed : Sprite
             ySpeed = speed;
         }
 
-        MoveUntilCollision(xSpeed, ySpeed, colliders);
+        Move(xSpeed, ySpeed);
     }
 
     public void OnCollision(GameObject other)
     {
-
+        if (other is Wall)
+        {
+            Move(-xSpeed, -ySpeed);
+        }
     }
 
 }

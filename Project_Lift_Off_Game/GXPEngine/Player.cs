@@ -47,3 +47,13 @@ class Player : Sprite
 
 }
 */
+
+/*
+        List<GameObject> setCollisions;
+        setCollisions = new List<GameObject>();
+
+        foreach (GameObject child in game.GetChildren(false))
+        {
+            if (child is Wall) setCollisions.Add(child);
+        }
+        colliders = setCollisions.ToArray();*/

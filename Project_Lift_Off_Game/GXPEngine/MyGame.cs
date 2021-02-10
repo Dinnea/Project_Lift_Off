@@ -7,6 +7,7 @@ public class MyGame : Game
 	PlayerGreen player1;
 	PlayerRed player2;
 	Wall wall;
+	Keys key;
 	Level level;
 
 
@@ -23,6 +24,10 @@ public class MyGame : Game
 
 		player2 = new PlayerRed();
 		AddChild(player2);
+
+		/*key = new Keys();
+		AddChild(key);*/
+
 	}
 
 

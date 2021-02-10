@@ -6,32 +6,22 @@ using System.Text;
 using GXPEngine;
 
 class PlayerGreen : Sprite
- {
+{
     private float speed = 1.0f;
     private float xSpeed;
     private float ySpeed;
 
-    private GameObject[] colliders;
-
-    public int storedKeys; // Howmany keys the player holds. 
+    public int storedKeys; // How many keys the player holds. 
 
     public PlayerGreen() : base("circle.png")
     {
         storedKeys = 0;
 
-        List<GameObject> setCollisions;
-        setCollisions = new List<GameObject>();
-
-        foreach (GameObject child in game.GetChildren(false))
-        {
-            if (child is Wall) setCollisions.Add(child);
-        }
-        colliders = setCollisions.ToArray();
 
         SetOrigin(width / 2f, height / 2f);
 
-        this.x = game.width/2;
-        this.y = game.height/2;
+        this.x = game.width / 2;
+        this.y = game.height / 2;
 
         SetScaleXY(0.7f, 0.7f);
 
@@ -71,16 +61,19 @@ class PlayerGreen : Sprite
             SetScaleXY(2.9f, 2.9f);
         }
 
-        MoveUntilCollision(xSpeed, ySpeed, colliders);
+        Move(xSpeed, ySpeed);
     }
 
     public void OnCollision(GameObject other)
     {
-        if(other is Keys)
+        if (other is Keys)
         {
-            storedKeys = storedKeys + 1; //needs to be associated with the key..
+            storedKeys = storedKeys + 1; //pickup a key
+        }
+
+        if (other is Wall)
+        {
+            Move(-xSpeed, -ySpeed);
         }
     }
-
- }
-
+}

@@ -18,7 +18,6 @@ public class Level : GameObject
 
     public Level()
     {
-
         BuildLevel();
     }
     //-------------------------------------------

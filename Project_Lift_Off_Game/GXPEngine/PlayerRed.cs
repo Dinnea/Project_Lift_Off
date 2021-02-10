@@ -58,6 +58,11 @@ class PlayerRed : Sprite
         {
             Move(-xSpeed, -ySpeed);
         }
+
+        if (other is PlayerGreen)
+        {
+            SetScaleXY(1.7f, 1.7f);
+        }
     }
 
 }

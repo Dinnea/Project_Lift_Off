@@ -58,7 +58,10 @@ class PlayerRed : Sprite
 
         Move(_xSpeed, _ySpeed);
 
-
+        if (_hasPowerup)
+        {
+            poweredUp();
+        }
     }
 
     public void OnCollision(GameObject other)

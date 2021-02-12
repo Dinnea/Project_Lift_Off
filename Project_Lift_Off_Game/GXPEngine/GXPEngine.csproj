@@ -85,6 +85,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="PlayerGreen.cs" />
     <Compile Include="PlayerRed.cs" />
+    <Compile Include="Powerup.cs" />
     <Compile Include="Wall.cs" />
   </ItemGroup>
 </Project>

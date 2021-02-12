@@ -7,9 +7,22 @@ using GXPEngine;
 
 class PlayerGreen : Sprite
 {
+    // SPEED VARIABLES
     private float _speed = 1.0f;
     private float _xSpeed;
     private float _ySpeed;
+
+    // POWERUP VARIABLES
+    private bool _hasPowerup;
+    private int _powerId;
+    private Random _rnd = new Random();
+    private int _powerTime = 2;
+    private int _timePickedUp;
+    private int _timer;
+    private bool _wallCrusher;
+    private bool _canBeHit;
+    public int bonusTime = 0;
+    
 
 
     private int storedKeys; // How many keys the player holds. 
@@ -17,15 +30,19 @@ class PlayerGreen : Sprite
     public PlayerGreen() : base("circle.png")
     {
         storedKeys = 0;
-
-        SetOrigin(width / 2f, height / 2f);
-        SetScaleXY(0.5f, 0.5f);
+        _wallCrusher = false;
+        _canBeHit = true;
+        SetScaleXY(0.7f, 0.7f);
 
     }
 
     void Update()
     {
-        //movement
+        //Console.WriteLine(_wallCrusher);
+        //--------------------------------------------------
+        //                   Movement
+        //---------------------------------------------------
+
         _xSpeed = 0;
         _ySpeed = 0;
 
@@ -64,6 +81,14 @@ class PlayerGreen : Sprite
         }
 
         Move(_xSpeed, _ySpeed);
+
+        //-------------------------------------
+        //              PowerUps
+        //------------------------------------
+        if (_hasPowerup)
+        {
+            poweredUp();
+        }
     }
 
     public void OnCollision(GameObject other)
@@ -73,16 +98,64 @@ class PlayerGreen : Sprite
             storedKeys = storedKeys + 1; //pickup a key
         }
 
-        if (other is Wall)
+        if (other is Wall && _wallCrusher == false)
         {
             Move(-_xSpeed, -_ySpeed);
         }
 
-        if (other is PlayerRed)
+        else if (other is Wall && _wallCrusher == true)
+        {
+            other.LateDestroy();
+        }
+
+        if (other is PlayerRed && _canBeHit == true)
         {
             End();
             Menu.playerID = 2;
         }
+
+
+        if (other is PowerUp)
+        {
+            _hasPowerup = true;
+            _timePickedUp = Time.time;
+            _powerId = _rnd.Next(1, 4);
+            other.LateDestroy();
+            //Console.WriteLine(_timePickedUp);
+
+        }
+    }
+
+    private void poweredUp()
+    {
+        _timer = (Time.time - _timePickedUp) / 1000;
+        switch (_powerId) {
+            case 1:
+                //_wallCrusher = true;
+                _speed = 2.0f;
+                break;
+            case 2:
+                _canBeHit = false;
+                //_wallCrusher = true;
+               // _speed = 2.0f;
+                break;
+            case 3:
+                _wallCrusher = true;
+                break;
+        }
+
+        if (_timer >= _powerTime)
+        {
+            _hasPowerup = false;
+            _timer = 0;
+            _speed = 1.0f;
+            _wallCrusher = false;
+            _canBeHit = true;
+            Console.WriteLine("POWER SPENT");
+
+        }
+        
+        
     }
 
     public void End()

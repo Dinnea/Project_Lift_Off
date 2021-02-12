@@ -146,17 +146,15 @@ public class Menu : GameObject
 
     void startGame()
     {
-
         if (_hasStarted == true && switchMenu == 0)
         {
-             Level level = new Level();
-            AddChild(level);
-            _hasStarted = true;
-            HUD hud;
-            hud = new HUD(level);
-            AddChild(hud);
-            hud.Translate(5, 925);
+            _level = new Level();
+            AddChild(_level);
 
+            _hud = new HUD(_level);
+            AddChild(_hud);
+
+            _hud.Translate(5, 925);
         }
     }
 

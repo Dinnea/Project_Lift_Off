@@ -10,7 +10,7 @@ public class HUD : Canvas
 {
     private Level _level;
 
-    public HUD(Level level) : base(200, 64)
+    public HUD(Level level) : base(1270, 200)
     {
 
         _level = level;

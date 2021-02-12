@@ -16,6 +16,9 @@ public class Menu : GameObject
     Sprite _player1Name;
     Sprite _player2Name;
 
+    Sound _menuPress;
+    Sound _menuBack;
+
     bool _hasStarted;
     bool _hasEnded;
 
@@ -28,6 +31,9 @@ public class Menu : GameObject
     public static int playerID = 0; // Winner in GameOver.cs
     public Menu()
     {
+        _menuPress = new Sound("menu.wav", false, false);
+        _menuBack = new Sound("menuBack.wav", false, false);
+
         _hasStarted = false;
         _hasEnded = false;
         //_menu = menu;
@@ -91,6 +97,7 @@ public class Menu : GameObject
         {
             showMenu();
             _gameOver.LateDestroy();
+            _menuBack.Play();
             _hasEnded = false;
             switchMenu = 0;
             playerID = 0;
@@ -103,6 +110,7 @@ public class Menu : GameObject
                 _hasStarted = true;
                 startGame();
                 hideMenu();
+                _menuPress.Play();
             }
         }
 
@@ -154,7 +162,7 @@ public class Menu : GameObject
             _hud = new HUD(_level);
             AddChild(_hud);
 
-            _hud.Translate(5, 925);
+            _hud.Translate(5, 900);
         }
     }
 

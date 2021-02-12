@@ -74,12 +74,6 @@ class PlayerGreen : Sprite
             //this.scaleY = -1;
         }
 
-        if (storedKeys == 3)
-        {
-            End();
-            Menu.playerID = 1;
-        }
-
         Move(_xSpeed, _ySpeed);
 
         //-------------------------------------
@@ -106,6 +100,17 @@ class PlayerGreen : Sprite
         else if (other is Wall && _wallCrusher == true)
         {
             other.LateDestroy();
+        }
+
+        if (other is Exit && storedKeys == 3)
+        {
+            End();
+            Menu.playerID = 1;
+        }
+
+        else if (other is Exit && storedKeys < 3)
+        {
+            Move(-_xSpeed, -_ySpeed);
         }
 
         if (other is PlayerRed && _canBeHit == true)

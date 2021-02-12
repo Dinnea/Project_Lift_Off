@@ -26,6 +26,7 @@ class PlayerRed : Sprite
     {
         SetScaleXY(0.7f, 0.7f);
         _wallCrusher = false;
+        _hasPowerup = false;
     }
 
     void Update()

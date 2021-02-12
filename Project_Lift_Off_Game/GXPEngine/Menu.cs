@@ -164,6 +164,7 @@ public class Menu : GameObject
 
             _hud.Translate(5, 900);
         }
+        //uwu
     }
 
     void exitGame()

@@ -7,58 +7,56 @@ using GXPEngine;
 
 class PlayerRed : Sprite
 {
-    private float speed = 0.5f;
-    private float xSpeed;
-    private float ySpeed;
-
-    
+    private float _speed = 0.5f;
+    private float _xSpeed;
+    private float _ySpeed;
 
     public PlayerRed() : base("circle2.png")
     {
-        SetScaleXY(0.7f, 0.7f);
+        SetOrigin(width / 2f, height / 2f);
+        SetScaleXY(0.5f, 0.5f);
     }
-
 
     void Update()
     {
         //movement
 
-        xSpeed = 0;
-        ySpeed = 0;
+        _xSpeed = 0;
+        _ySpeed = 0;
 
         if (Input.GetKey(Key.A))
         {
-            xSpeed = -speed;
+            _xSpeed = -_speed;
         }
 
         if (Input.GetKey(Key.D))
         {
-            xSpeed = speed;
+            _xSpeed = _speed;
         }
 
         if (Input.GetKey(Key.W))
         {
-            ySpeed = -speed;
+            _ySpeed = -_speed;
         }
 
         if (Input.GetKey(Key.S))
         {
-            ySpeed = speed;
+            _ySpeed = _speed;
         }
 
-        Move(xSpeed, ySpeed);
+        Move(_xSpeed, _ySpeed);
     }
 
     public void OnCollision(GameObject other)
     {
         if (other is Wall)
         {
-            Move(-xSpeed, -ySpeed);
+            Move(-_xSpeed, -_ySpeed);
         }
 
         if (other is PlayerGreen)
         {
-            SetScaleXY(1.7f, 1.7f);
+            //SetScaleXY(1.7f, 1.7f);
         }
     }
 

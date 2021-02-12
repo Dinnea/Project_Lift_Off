@@ -5,15 +5,11 @@ using GXPEngine;								// GXPEngine contains the engine
 public class MyGame : Game
 {
 
-	public MyGame() : base(1500, 800, false)		// Create a window that's 800x600 and NOT fullscreen
+	public MyGame() : base(1280, 1000, false)		// Create a window that's 800x600 and NOT fullscreen
 	{
 		Menu menu = new Menu();
 		AddChild(menu);
 
-		/* Level level = new Level();
-		AddChild(level);*/
-
-		//level.Translate(0, 50);
 	}
 
 

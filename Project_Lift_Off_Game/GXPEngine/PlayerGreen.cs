@@ -7,58 +7,63 @@ using GXPEngine;
 
 class PlayerGreen : Sprite
 {
-    private float speed = 1.0f;
-    private float xSpeed;
-    private float ySpeed;
+    private float _speed = 1.0f;
+    private float _xSpeed;
+    private float _ySpeed;
 
-    public int storedKeys; // How many keys the player holds. 
+
+    private int storedKeys; // How many keys the player holds. 
 
     public PlayerGreen() : base("circle.png")
     {
         storedKeys = 0;
 
-
         SetOrigin(width / 2f, height / 2f);
-
-        SetScaleXY(0.7f, 0.7f);
+        SetScaleXY(0.5f, 0.5f);
 
     }
-
 
     void Update()
     {
         //movement
+        _xSpeed = 0;
+        _ySpeed = 0;
 
-        xSpeed = 0;
-        ySpeed = 0;
 
         if (Input.GetKey(Key.LEFT))
         {
-            xSpeed = -speed;
+            _xSpeed = -_speed;
+            //SetFrame(5);
+            //this.scaleX = -1;
         }
 
         if (Input.GetKey(Key.RIGHT))
         {
-            xSpeed = speed;
+            _xSpeed = _speed;
+            //SetFrame(2);
+            //this.scaleX = 1;
         }
 
         if (Input.GetKey(Key.UP))
         {
-            ySpeed = -speed;
+            _ySpeed = -_speed;
+            //this.scaleY = 1;
+            //SetCycle(7,7,30,false);
         }
 
         if (Input.GetKey(Key.DOWN))
         {
-            ySpeed = speed;
+            _ySpeed = _speed;
+            //this.scaleY = -1;
         }
 
-        //Keys (testing)
         if (storedKeys == 3)
         {
-            SetScaleXY(2.9f, 2.9f);
+            End();
+            Menu.playerID = 1;
         }
 
-        Move(xSpeed, ySpeed);
+        Move(_xSpeed, _ySpeed);
     }
 
     public void OnCollision(GameObject other)
@@ -70,7 +75,18 @@ class PlayerGreen : Sprite
 
         if (other is Wall)
         {
-            Move(-xSpeed, -ySpeed);
+            Move(-_xSpeed, -_ySpeed);
         }
+
+        if (other is PlayerRed)
+        {
+            End();
+            Menu.playerID = 2;
+        }
+    }
+
+    public void End()
+    {
+        Menu.switchMenu = 1;
     }
 }

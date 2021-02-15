@@ -21,6 +21,7 @@ class PlayerGreen : Sprite
     private int _timer;
     private bool _wallCrusher;
     private bool _canBeHit;
+    private int _isItTime;
 
     private int storedKeys; // How many keys the player holds. 
 
@@ -82,10 +83,13 @@ class PlayerGreen : Sprite
 
     public void OnCollision(GameObject other)
     {
+        //pickup
         if (other is Keys)
         {
             storedKeys = storedKeys + 1; //pickup a key
         }
+
+        //enviroment collision
 
         if (other is Wall && _wallCrusher == false || other is Border && _wallCrusher == true)
         {
@@ -108,21 +112,30 @@ class PlayerGreen : Sprite
             Move(-_xSpeed, -_ySpeed);
         }
 
+        //player collision
         if (other is PlayerRed && _canBeHit == true)
         {
             End();
             Menu.playerID = 2;
         }
 
-
+        //Power up collision!
         if (other is PowerUp)
         {
-            _hasPowerup = true;
-            _timePickedUp = Time.time;
-            _powerId = _rnd.Next(1, 4);
-            other.LateDestroy();
-            //Console.WriteLine(_timePickedUp);
+            
+            _isItTime = _rnd.Next(1, 5);
 
+            if (_isItTime == 1) {
+                Level.maxTime = Level.maxTime + 5;
+                other.LateDestroy();
+            }
+            else
+            {
+                _hasPowerup = true;
+                _timePickedUp = Time.time;
+                _powerId = _rnd.Next(1, 4);
+                other.LateDestroy();
+            } 
         }
     }
     //-------------------------------------
@@ -136,6 +149,7 @@ class PlayerGreen : Sprite
                 _speed = 2.0f;
                 break;
             case 2:
+                _powerTime = 5;
                 _canBeHit = false;
                 break;
             case 3:
@@ -145,13 +159,12 @@ class PlayerGreen : Sprite
 
         if (_timer >= _powerTime)
         {
+            _powerTime = 2;
             _hasPowerup = false;
             _timer = 0;
             _speed = 1.0f;
             _wallCrusher = false;
             _canBeHit = true;
-            Console.WriteLine("POWER SPENT");
-
         }
         
         

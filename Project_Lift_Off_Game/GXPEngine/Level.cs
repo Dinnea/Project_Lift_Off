@@ -11,7 +11,7 @@ public class Level : GameObject
     private int _timeLoaded;
     private int _time;
     public int timeLeft;
-    public int maxTime = 180;
+    public static int maxTime = 180;
 
     //Power up spawn variables
     private int _timeLeftToPower;

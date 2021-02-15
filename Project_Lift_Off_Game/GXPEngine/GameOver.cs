@@ -116,7 +116,7 @@ namespace GXPEngine
                     _menuButton.LateDestroy();
                     _exitButton.LateDestroy();
 
-                    Menu.switchMenu = 0;
+                    Menu.switchMenu = 3;
                     LateDestroy();
                 }
                 

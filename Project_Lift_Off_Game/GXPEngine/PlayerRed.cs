@@ -20,6 +20,7 @@ class PlayerRed : Sprite
     private int _timePickedUp;
     private int _timer;
     private bool _wallCrusher;
+    private int _isItTime;
 
     public PlayerRed() : base("circle2.png")
     {
@@ -65,8 +66,9 @@ class PlayerRed : Sprite
 
     public void OnCollision(GameObject other)
     {
-     
-        if (other is Wall && _wallCrusher == false)
+     //enviroment collisions
+
+        if (other is Wall && _wallCrusher == false || other is Border && _wallCrusher == true)
         {
             Move(-_xSpeed, -_ySpeed);
         }
@@ -75,14 +77,28 @@ class PlayerRed : Sprite
         {
             other.LateDestroy();
         }
-         
+
+        //Power up collision!
         if (other is PowerUp)
         {
-            _hasPowerup = true;
-            _timePickedUp = Time.time;
-            _powerId = _rnd.Next(1, 4);
-            other.LateDestroy();
+
+            _isItTime = _rnd.Next(1, 5);
+
+            if (_isItTime == 1)
+            {
+                Level.maxTime = Level.maxTime - 5;
+                other.LateDestroy();
+            }
+            else
+            {
+                _hasPowerup = true;
+                _timePickedUp = Time.time;
+                _powerId = _rnd.Next(1, 4);
+                other.LateDestroy();
+            }
         }
+
+
     }
     private void poweredUp()
     {
@@ -90,10 +106,10 @@ class PlayerRed : Sprite
         switch (_powerId)
         {
             case 1:
-                _speed =_speed * 2;
+                _speed = 1.7f;
                 break;
             case 2:
-                _speed = _speed * (1.5f);
+                _speed = 1.05f;
                 break;
             case 3:
                 _wallCrusher = true;

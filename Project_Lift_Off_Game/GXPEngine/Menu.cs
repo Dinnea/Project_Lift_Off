@@ -87,36 +87,47 @@ public class Menu : GameObject
 
     void Update()
     {
-        if (switchMenu == 1)
+         switch (switchMenu)
         {
-            _hasStarted = false;
-            _hasEnded = true;
-            _level.LateDestroy();
-            _hud.LateDestroy();
-            showGameOver();
-        }
-        if (switchMenu == 2)
-        {
-            showMenu();
-            _gameOver.LateDestroy();
-            _menuBack.Play();
-            _hasEnded = false;
-            switchMenu = 0;
-            playerID = 0;
-        }
+            case 1:
+                _hasStarted = false;
+                _hasEnded = true;
+                _level.LateDestroy();
+                _hud.LateDestroy();
+                showGameOver();
+                break;
 
-        //-------------------------------------------------
-        //              Button press check
-        //--------------------------------------------------
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (_startButton.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
+            case 2:
+                showMenu();
+                _gameOver.LateDestroy();
+                _menuBack.Play();
+                _hasEnded = false;
+                switchMenu = 0;
+                playerID = 0;
+                break;
+            case 3:
                 _hasStarted = true;
                 startGame();
                 hideMenu();
                 _menuPress.Play();
+                switchMenu = 0;
+                if (_hasEnded == true)
+                {
+                    _gameOver.LateDestroy();
+                    _hasEnded = false;
+                }
+                break;
+        }
+
+            //-------------------------------------------------
+            //              Button press check
+            //--------------------------------------------------
+
+            if (Input.GetMouseButtonUp(0))
+        {
+            if (_startButton.HitTestPoint(Input.mouseX, Input.mouseY))
+            {
+                switchMenu = 3;
             }
 
             if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY))
@@ -163,7 +174,7 @@ public class Menu : GameObject
 
     void startGame()
     {
-        if (_hasStarted == true && switchMenu == 0)
+        if (_hasStarted == true)
         {
             _level = new Level();
             AddChild(_level);

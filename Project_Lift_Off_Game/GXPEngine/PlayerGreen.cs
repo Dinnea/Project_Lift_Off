@@ -90,7 +90,7 @@ class PlayerGreen : Sprite
             storedKeys = storedKeys + 1; //pickup a key
         }
 
-        if (other is Wall && _wallCrusher == false)
+        if (other is Wall && _wallCrusher == false || other is Border && _wallCrusher == true)
         {
             Move(-_xSpeed, -_ySpeed);
         }

@@ -5,9 +5,9 @@ using System.Text;
 
 using GXPEngine;
 
-public class Button: Sprite
+public class Button: Sprite //Button template.
 {
-    public Button() : base("colors.png")
+    public Button() : base("colors.png") 
     {
 
     }

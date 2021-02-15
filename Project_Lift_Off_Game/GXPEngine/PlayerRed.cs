@@ -93,12 +93,10 @@ class PlayerRed : Sprite
         switch (_powerId)
         {
             case 1:
-                //_wallCrusher = true;
                 _speed =_speed * 2;
                 break;
             case 2:
                 _speed = _speed * (1.5f);
-
                 break;
             case 3:
                 _wallCrusher = true;
@@ -111,11 +109,6 @@ class PlayerRed : Sprite
             _timer = 0;
             _speed = 0.7f;
             _wallCrusher = false;
-            
-            Console.WriteLine("POWER SPENT");
-
-        }
-
-
+         }
     }
 }

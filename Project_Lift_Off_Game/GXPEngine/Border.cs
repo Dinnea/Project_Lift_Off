@@ -5,9 +5,9 @@ using System.Text;
 
 using GXPEngine;
 
-public class Border : Wall
+public class Border : Wall 
 {
-    public Border()
+    public Border() //Invisible version of Wall class
     {
         this.visible = false;
     }

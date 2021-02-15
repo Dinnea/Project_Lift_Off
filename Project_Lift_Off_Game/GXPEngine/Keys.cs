@@ -5,7 +5,7 @@ using System.Text;
 
 using GXPEngine;
 
-public class Keys : Sprite
+public class Keys : Sprite //Keys that need to be picked up by pgreen
 {
     //Sound _keySound;
 
@@ -22,7 +22,7 @@ public class Keys : Sprite
         }
     }
 
-    public void playerInteraction()
+    public void playerInteraction() //Pick up
     {
         this.LateDestroy();
         //_keySound;

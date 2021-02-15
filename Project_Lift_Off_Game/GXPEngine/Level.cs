@@ -7,12 +7,14 @@ using GXPEngine;
 
 public class Level : GameObject
 {
+    //Timer related variables
     private int _timeLoaded;
     private int _time;
     public int timeLeft;
-    public int maxTime = 300;
+    public int maxTime = 180;
 
-    private int _timeLeftToPower = 5;
+    //Power up spawn variables
+    private int _timeLeftToPower;
     private int _powerTimed;
     private int _h;
     private int _w;
@@ -20,6 +22,7 @@ public class Level : GameObject
     private Random _rnd = new Random();
     private List<PowerUp> _powerUps = new List<PowerUp>();
 
+    //Tile related variables
     int Width = 0;
     int Height = 0;
     const int TileSize = 64;
@@ -29,9 +32,7 @@ public class Level : GameObject
     public Level()
     {
         BuildLevel();
-
         startMusic();
-
     }
 
     void startMusic()
@@ -43,17 +44,16 @@ public class Level : GameObject
     void Update()
     {
         _time = ((Time.time) / 1000) - _timeLoaded;
-        timeLeft = (maxTime - _time);
+        timeLeft = (maxTime - _time); //counts down the time left till the level is over
 
         if (timeLeft <= 0)
         {
             end();
         }
 
-        //countdown to spawn power
-        _timeLeftToPower = ((Time.time - _powerTimed)/1000);
+        _timeLeftToPower = ((Time.time - _powerTimed)/1000); //countdown to spawn power
 
-        if (_timeLeftToPower == 5)
+        if (_timeLeftToPower == 10)
         {
             _w = _rnd.Next(1, 20) * 64;
             _h = _rnd.Next(1, 14) * 64;
@@ -72,7 +72,6 @@ public class Level : GameObject
 
     private void AddTile(int column, int row, int id)
     {
-        _time = 0;
         Sprite newTile = null;
         switch (id)
         {
@@ -152,12 +151,11 @@ public class Level : GameObject
     {
         LoadLevel();
         _timeLoaded = (Time.time / 1000);  //makes sure that the timer wont start counting down before the level is loaded
-        _powerTimed = _timeLoaded;
+        _powerTimed = (Time.time);  //when did last power up appear
 
-        for (int row = 0; row < Height; row++)
+        for (int row = 0; row < Height; row++) //assign X coordinates
         {
-
-            for (int column = 0; column < Width; column++)
+            for (int column = 0; column < Width; column++) //assign Y coordinates
             {
                 int id = levelData[row, column];
                 AddTile(column -1 , row -1 , id);
@@ -173,30 +171,15 @@ public class Level : GameObject
     {
         _powerUps.Add(new PowerUp { x = w, y = h } );
         AddChild(_powerUps[i]);
-        _powerTimed = Time.time;
-        _powerUpCount++;
-   
-
+        _powerTimed = Time.time; //when did the lasy
+        _powerUpCount++; //how many powers have spawned?
     }
-
-   /* private void spawnPower(int _w, int _h)//, Sprite newTile)
-    {
-        
-            //if ((powerUp.x == newTile.x) && (powerUp.y == newTile.y) && newTile is null)
-            //{
-                AddChild(powerUps);
-                powerUps.x = _w;
-                powerUps.y = _h;
-            //}
-       
-    }*/
-
    //---------------------------------------------------------
    //            End the game if time reaches 0 (red wins)
    //---------------------------------------------------------
    private void end()
     {
         Menu.switchMenu = 1;
-        Menu.playerID = 2;
+        Menu.playerID = 2; //if the level is over, the red player wins
     }
 }

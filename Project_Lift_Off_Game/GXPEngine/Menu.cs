@@ -81,6 +81,8 @@ public class Menu : GameObject
         _player2Name.y = ((game.height / 5) * 3);
         _player2Name.SetOrigin(_player2Name.width / 1.8f, _player2Name.height / 2f);
         _player2Name.SetScaleXY(0.4f, 0.4f);
+
+        
     }
 
     void Update()
@@ -103,6 +105,10 @@ public class Menu : GameObject
             playerID = 0;
         }
 
+        //-------------------------------------------------
+        //              Button press check
+        //--------------------------------------------------
+
         if (Input.GetMouseButtonUp(0))
         {
             if (_startButton.HitTestPoint(Input.mouseX, Input.mouseY))
@@ -112,14 +118,17 @@ public class Menu : GameObject
                 hideMenu();
                 _menuPress.Play();
             }
-        }
 
-        if (Input.GetMouseButtonUp(0))
-        {
             if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY))
             {
                 exitGame();
             }
+
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            
         }
     }
 
@@ -164,7 +173,6 @@ public class Menu : GameObject
 
             _hud.Translate(5, 900);
         }
-        //uwu
     }
 
     void exitGame()

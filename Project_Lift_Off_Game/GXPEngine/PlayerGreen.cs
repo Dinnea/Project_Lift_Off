@@ -38,14 +38,12 @@ class PlayerGreen : Sprite
 
     void Update()
     {
-        //Console.WriteLine(_wallCrusher);
         //--------------------------------------------------
         //                   Movement
         //---------------------------------------------------
 
         _xSpeed = 0;
         _ySpeed = 0;
-
 
         if (Input.GetKey(Key.LEFT))
         {
@@ -76,9 +74,9 @@ class PlayerGreen : Sprite
 
         Move(_xSpeed, _ySpeed);
 
-        //-------------------------------------
-        //              PowerUps
-        //------------------------------------
+        //
+        // Power ups
+
         if (_hasPowerup)
         {
             poweredUp();
@@ -130,7 +128,9 @@ class PlayerGreen : Sprite
 
         }
     }
-
+    //-------------------------------------
+    //              PowerUps
+    //------------------------------------
     private void poweredUp()
     {
         _timer = (Time.time - _timePickedUp) / 1000;

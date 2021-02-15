@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Border.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="Exit.cs" />
     <Compile Include="GameOver.cs" />

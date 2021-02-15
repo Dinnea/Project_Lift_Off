@@ -27,7 +27,7 @@ public class Menu : GameObject
     private HUD _hud;
     private Menu _menu;
 
-    public static int switchMenu = 0; // Restarts, and resets menu again. (0 = start level 1) (1 = gameover) (2 = reset to menu) 
+    public static int switchMenu = 0; // Restarts, and resets menu again. (0 = start) (1 = gameover) (2 = reset to menu)
     public static int playerID = 0; // Winner in GameOver.cs
     public Menu()
     {

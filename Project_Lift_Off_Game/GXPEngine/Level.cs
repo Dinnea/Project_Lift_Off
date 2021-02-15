@@ -23,15 +23,15 @@ public class Level : GameObject
     private List<PowerUp> _powerUps = new List<PowerUp>();
 
     //Tile related variables
-    int Width = 0;
-    int Height = 0;
-    const int TileSize = 64;
-    int[,] levelData = null;
+    private int _width = 0;
+    private int _height = 0;
+    private const int _tileSize = 64;
+    int[,] _levelData = null;
 
 
     public Level()
     {
-        BuildLevel();
+        buildLevel();
         startMusic();
     }
 
@@ -70,7 +70,7 @@ public class Level : GameObject
     //                 Tile type "dictionary"
     //---------------------------------------------
 
-    private void AddTile(int column, int row, int id)
+    private void addTile(int column, int row, int id)
     {
         Sprite newTile = null;
         switch (id)
@@ -101,8 +101,8 @@ public class Level : GameObject
         if (newTile != null)
         {
             AddChild(newTile);
-            newTile.x = column * TileSize;
-            newTile.y = row * TileSize;
+            newTile.x = column * _tileSize;
+            newTile.y = row * _tileSize;
         }
     }
 
@@ -110,13 +110,13 @@ public class Level : GameObject
     //              Level layout in ID numbers
     //---------------------------------------------------
 
-    private void LoadLevel()
+    private void loadLevel()
     {
 
-        Height = 16;
-        Width = 22;
+        _height = 16;
+        _width = 22;
 
-        levelData = new int[,]  
+        _levelData = new int[,]  
         
                     //only add a single 3 and 4!!!
                     //Must add a single 6!!!
@@ -147,18 +147,18 @@ public class Level : GameObject
     //-----------------------------------------------------------------------------------
 
 
-    private void BuildLevel()
+    private void buildLevel()
     {
-        LoadLevel();
+        loadLevel();
         _timeLoaded = (Time.time / 1000);  //makes sure that the timer wont start counting down before the level is loaded
         _powerTimed = (Time.time);  //when did last power up appear
 
-        for (int row = 0; row < Height; row++) //assign X coordinates
+        for (int row = 0; row < _height; row++) //assign X coordinates
         {
-            for (int column = 0; column < Width; column++) //assign Y coordinates
+            for (int column = 0; column < _width; column++) //assign Y coordinates
             {
-                int id = levelData[row, column];
-                AddTile(column -1 , row -1 , id);
+                int id = _levelData[row, column];
+                addTile(column -1 , row -1 , id);
             }
 
         }

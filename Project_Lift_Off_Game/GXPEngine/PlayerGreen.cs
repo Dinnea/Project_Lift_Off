@@ -21,9 +21,6 @@ class PlayerGreen : Sprite
     private int _timer;
     private bool _wallCrusher;
     private bool _canBeHit;
-    public int bonusTime = 0;
-    
-
 
     private int storedKeys; // How many keys the player holds. 
 
@@ -136,13 +133,10 @@ class PlayerGreen : Sprite
         _timer = (Time.time - _timePickedUp) / 1000;
         switch (_powerId) {
             case 1:
-                //_wallCrusher = true;
                 _speed = 2.0f;
                 break;
             case 2:
                 _canBeHit = false;
-                //_wallCrusher = true;
-               // _speed = 2.0f;
                 break;
             case 3:
                 _wallCrusher = true;

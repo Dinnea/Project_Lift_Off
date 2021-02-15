@@ -20,7 +20,6 @@ class PlayerRed : Sprite
     private int _timePickedUp;
     private int _timer;
     private bool _wallCrusher;
-    public int bonusTime = 0;
 
     public PlayerRed() : base("circle2.png")
     {
@@ -83,8 +82,6 @@ class PlayerRed : Sprite
             _timePickedUp = Time.time;
             _powerId = _rnd.Next(1, 4);
             other.LateDestroy();
-            //Console.WriteLine(_timePickedUp);
-
         }
     }
     private void poweredUp()

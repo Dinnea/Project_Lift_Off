@@ -130,7 +130,7 @@ class Player : Sprite
         switch ( powerId )
         {
             case 1:
-                 speed = 2.0f;
+                 speed = 4.0f;
                 break;
             case 2:
                 if ( playerNumber == 1 )
@@ -140,7 +140,7 @@ class Player : Sprite
                 }
                 else if ( playerNumber == 2 )
                 {
-                     speed = 1.05f;
+                     speed = 2.1f;
                     break;
                 }
                 break;
@@ -153,8 +153,15 @@ class Player : Sprite
         {
             hasPowerup = false;
             timer = 0;
-            speed = 0.7f;
             wallCrusher = false;
+            if ( playerNumber == 1)
+            {
+                speed = 1f;
+            }
+            else if ( playerNumber == 2)
+            {
+                speed = 0.7f;
+            }
         }
     } 
 }

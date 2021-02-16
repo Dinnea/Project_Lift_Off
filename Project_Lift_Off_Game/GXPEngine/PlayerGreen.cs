@@ -14,7 +14,7 @@ class PlayerGreen : Player
 
         storedKeys = 0;
 
-        this.speed = 1f;
+        this.speed = 2f;
         this.playerNumber = 1;
 
         this.wallCrusher = false;

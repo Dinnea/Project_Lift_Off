@@ -11,7 +11,7 @@ class PlayerRed : Player
     public PlayerRed() : base( "circle2.png" )
     {
 
-        this.speed = 0.7f;
+        this.speed = 1.4f;
         this.playerNumber = 2;
 
         SetScaleXY(0.7f, 0.7f);

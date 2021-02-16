@@ -7,85 +7,154 @@ using GXPEngine;
 
 class Player : Sprite
 {
+    //MOVEMENT KEYS
+    protected int keyLeft = Key.A;
+    protected int keyRight = Key.D;    
+    protected int keyUp = Key.W;
+    protected int keyDown = Key.S;
+
     // SPEED VARIABLES
-    float _speed;
-    private float _xSpeed;
-    private float _ySpeed;
+    protected float speed;
+    protected float xSpeed;
+    protected float ySpeed;
 
 
     // POWERUP VARIABLES
-    private bool _hasPowerup;
-    private int _powerId;
-    private Random _rnd = new Random();
-    private int _powerTime = 2;
-    private int _timePickedUp;
-    private int _timer;
-    private bool _wallCrusher;
+    protected bool hasPowerup;
+    protected int powerId;
+    protected Random rnd = new Random();
+    protected int powerTime = 2;
+    protected int timePickedUp;
+    protected int timer;
+    protected bool wallCrusher;
+    protected int isItTime;
+    protected bool canBeHit;
+    protected int playerNumber;
 
-    public Player(String filename) : base(filename)
+    public Player( String filename ) : base( filename )
     {
-        
-        _wallCrusher = false;
-        _hasPowerup = false;
     }
+    
+        void Update()
+        {
+        //Check for power up!
+            if ( hasPowerup )
+            {
+                poweredUp();
+            }
+        }
 
-    void Update()
+    //--------------------------------------------------
+    //                   Movement
+    //---------------------------------------------------
+    public void PlayerMovement()
     {
         //movement
+        xSpeed = 0;
+        ySpeed = 0;
 
-        _xSpeed = 0;
-        _ySpeed = 0;
-
-        Move(_xSpeed, _ySpeed);
-
-        if (_hasPowerup)
+        if ( Input.GetKey ( keyLeft ) )
         {
-            poweredUp();
+            xSpeed = -speed;
+            //SetFrame(5);
+            //this.scaleX = -1;
         }
+
+        if ( Input.GetKey ( keyRight ) )
+        {
+            xSpeed = speed;
+            //SetFrame(2);
+            //this.scaleX = 1;
+        }
+
+        if ( Input.GetKey ( keyUp ) )
+        {
+            ySpeed = -speed;
+            //this.scaleY = 1;
+            //SetCycle(7,7,30,false);
+        }
+
+        if ( Input.GetKey ( keyDown ) )
+        {
+            ySpeed = speed;
+            //this.scaleY = -1;
+        }
+
+        Move( xSpeed, ySpeed );
     }
 
-    public void OnCollision(GameObject other)
+    //----------------------------------------------------
+    //                        Collisions
+    //-----------------------------------------------------
+    public virtual void OnCollision( GameObject other )
     {
 
-        if (other is Wall && _wallCrusher == false)
+        //enviroment collisions
+        if ( other is Wall && wallCrusher == false || other is Border && wallCrusher == true )
         {
-            Move(-_xSpeed, -_ySpeed);
+            Move( -xSpeed, -ySpeed );
         }
 
-        else if (other is Wall && _wallCrusher == true)
+        else if ( other is Wall && wallCrusher == true )
         {
             other.LateDestroy();
         }
 
-        if (other is PowerUp)
+        //Power up collision!
+        if ( other is PowerUp )
         {
-            _hasPowerup = true;
-            _timePickedUp = Time.time;
-            _powerId = _rnd.Next(1, 4);
-            other.LateDestroy();
+
+            isItTime = rnd.Next( 1, 5 );
+
+            if ( isItTime == 1 )
+            {
+                Level.maxTime = Level.maxTime - 5;
+                other.LateDestroy();
+            }
+            else
+            {
+                hasPowerup = true;
+                timePickedUp = Time.time;
+                powerId = rnd.Next( 1, 4 );
+                other.LateDestroy();
+            }
         }
     }
-    private void poweredUp()
+    //-------------------------------------
+    //              PowerUps
+    //------------------------------------
+
+    public void poweredUp()
     {
-        _timer = (Time.time - _timePickedUp) / 1000;
-        switch (_powerId)
+         timer = ( Time.time -  timePickedUp ) / 1000;
+        switch ( powerId )
         {
             case 1:
-                _speed = _speed * 2;
+                 speed = 2.0f;
                 break;
             case 2:
+                if ( playerNumber == 1 )
+                {
+                     powerTime = 5;
+                     canBeHit = false;
+                }
+                else if ( playerNumber == 2 )
+                {
+                     speed = 1.05f;
+                    break;
+                }
                 break;
             case 3:
-                _wallCrusher = true;
+                 wallCrusher = true;
                 break;
         }
 
-        if (_timer >= _powerTime)
+        if ( timer >=  powerTime )
         {
-            _hasPowerup = false;
-            _timer = 0;
-            _speed = 0.7f;
-            _wallCrusher = false;
+            hasPowerup = false;
+            timer = 0;
+            speed = 0.7f;
+            wallCrusher = false;
         }
-    }
+    } 
 }

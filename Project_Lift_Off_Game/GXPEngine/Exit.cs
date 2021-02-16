@@ -7,8 +7,8 @@ using GXPEngine;
 
 public class Exit : Sprite   // Green player uses this to exit
 {
-    public Exit() : base("square1.png")
+    public Exit() : base( "square1.png" )
     {
-        SetOrigin(this.x / 2, this.y / 2);
+        SetOrigin( this.x / 2, this.y / 2 );
     }
 }

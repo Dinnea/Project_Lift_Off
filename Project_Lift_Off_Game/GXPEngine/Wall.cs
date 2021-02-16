@@ -10,9 +10,9 @@ public class Wall : Sprite
 {
 
 
-    public Wall() : base("square.png")
+    public Wall() : base( "square.png" )
     {
-        SetOrigin(this.x/2, this.y/2);
+        SetOrigin( this.x/2, this.y/2 );
     }
 }
 

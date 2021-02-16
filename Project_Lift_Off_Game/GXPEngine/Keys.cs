@@ -9,12 +9,12 @@ public class Keys : Sprite //Keys that need to be picked up by pgreen
 {
     //Sound _keySound;
 
-    public Keys() : base("triangle.png")
+    public Keys() : base( "triangle.png" )
     {
-        SetScaleXY(0.5f, 0.5f);
+        SetScaleXY( 0.5f, 0.5f );
     }
 
-    public void OnCollision(GameObject other)
+    public void OnCollision( GameObject other )
     {
         if (other is PlayerGreen)
         {

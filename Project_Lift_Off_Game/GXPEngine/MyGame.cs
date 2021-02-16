@@ -9,6 +9,8 @@ public class MyGame : Game
 	{
 		Menu menu = new Menu();
 		AddChild(menu);
+		/*FirstLevel level1 = new FirstLevel();
+		AddChild(level1);*/
 
 	}
 

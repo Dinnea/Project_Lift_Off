@@ -23,12 +23,15 @@ public class Menu : GameObject
     bool _hasEnded;
 
     private GameOver _gameOver;
-    private Level _level;
-    private HUD _hud;
+    private FirstLevel _level1;
+    private SecondLevel _level2;
+    private HUD _hud1;
+    private HUD _hud2;
     private Menu _menu;
 
     public static int switchMenu = 0; // Restarts, and resets menu again. (0 = start) (1 = gameover) (2 = reset to menu)
     public static int playerID = 0; // Winner in GameOver.cs
+    public static int currentLevel; //Checks which level it is
     public Menu()
     {
         _menuPress = new Sound("menu.wav", false, false);
@@ -92,8 +95,8 @@ public class Menu : GameObject
             case 1:
                 _hasStarted = false;
                 _hasEnded = true;
-                _level.LateDestroy();
-                _hud.LateDestroy();
+                _level1.LateDestroy();
+                _hud1.LateDestroy();
                 showGameOver();
                 break;
 
@@ -106,8 +109,9 @@ public class Menu : GameObject
                 playerID = 0;
                 break;
             case 3:
+                currentLevel = 1;
                 _hasStarted = true;
-                startGame();
+                startLevel1();
                 hideMenu();
                 _menuPress.Play();
                 switchMenu = 0;
@@ -117,6 +121,20 @@ public class Menu : GameObject
                     _hasEnded = false;
                 }
                 break;
+            case 4:
+                currentLevel = 2;
+                _hasStarted = true;
+                startLevel2();
+                hideMenu();
+                _menuPress.Play();
+                switchMenu = 0;
+                if (_hasEnded == true)
+                {
+                    _gameOver.LateDestroy();
+                    _hasEnded = false;
+                }
+                break;
+
         }
 
             //-------------------------------------------------
@@ -167,22 +185,41 @@ public class Menu : GameObject
     {
         if (_hasEnded == true && switchMenu == 1)
         {
+            currentLevel = 0;
             _gameOver = new GameOver();
             AddChild(_gameOver);
         }
     }
-
-    void startGame()
+//-----------------------------------------------------------------------------------
+//                             Start the levels
+//-----------------------------------------------------------------------------------
+    void startLevel1()
     {
         if (_hasStarted == true)
         {
-            _level = new Level();
-            AddChild(_level);
+            
+            _level1 = new FirstLevel();
+            AddChild(_level1);
 
-            _hud = new HUD(_level);
-            AddChild(_hud);
+            _hud1 = new HUD(_level1);
+            AddChild(_hud1);
 
-            _hud.Translate(5, 900);
+            _hud1.Translate(5, 900);
+        }
+    }
+
+    void startLevel2()
+    {
+        if (_hasStarted == true)
+        {
+            currentLevel = 2;
+            _level2 = new SecondLevel();
+            AddChild(_level2);
+
+            _hud2 = new HUD(_level1);
+            AddChild(_hud2);
+
+            _hud2.Translate(5, 900);
         }
     }
 

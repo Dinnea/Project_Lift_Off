@@ -43,21 +43,28 @@ public class Level : GameObject
 
     void Update()
     {
-        time = ( ( Time.time ) / 1000 ) - timeLoaded;
-        timeLeft = ( maxTime - time ); //counts down the time left till the level is over
 
-        if ( timeLeft <= 0 )
+    }
+    //-----------------------------------------------------
+    //          Functions ran during the level duration 
+    //-----------------------------------------------------
+    public void LevelRuntime()
+    {
+        time = ((Time.time) / 1000) - timeLoaded;
+        timeLeft = (maxTime - time); //counts down the time left till the level is over
+
+        if (timeLeft <= 0)
         {
             end();
         }
 
-        timeLeftToPower = ( ( Time.time - powerTimed )/1000 ); //countdown to spawn power
+        timeLeftToPower = ((Time.time - powerTimed) / 1000); //countdown to spawn power
 
-        if ( timeLeftToPower == 10 )
+        if (timeLeftToPower == 10)
         {
-            w = rnd.Next( 1, 20 ) * 64;
-            h = rnd.Next( 1, 14 ) * 64;
-            spawnPower( w, h, powerUpCount );
+            w = rnd.Next(1, 20) * 64;
+            h = rnd.Next(1, 14) * 64;
+            spawnPower(w, h, powerUpCount);
         }
     }
 
@@ -109,10 +116,11 @@ public class Level : GameObject
     //--------------------------------------------------
     //              Level layout in ID numbers
     //---------------------------------------------------
+    //
+    //only change between levels is this section.
 
-    private void loadLevel()
+    public virtual void LoadLevel()
     {
-
         height = 16;
         width = 22;
 
@@ -123,7 +131,7 @@ public class Level : GameObject
                     //never remove 7s!
         {
             {7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 },  //border                                                    
-            {7, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 2, 0, 0, 1, 4, 0, 0, 0, 0, 6, 7 },  //1
+            {7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 },  //1
             {7, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 7 },  //2
             {7, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 7 },  //3
             {7, 0, 1, 0, 5, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 7 },  //4
@@ -149,7 +157,7 @@ public class Level : GameObject
 
     private void buildLevel()
     {
-        loadLevel();
+        LoadLevel();
         timeLoaded = ( Time.time / 1000 );  //makes sure that the timer wont start counting down before the level is loaded
         powerTimed = ( Time.time );  //when did last power up appear
 
@@ -171,7 +179,7 @@ public class Level : GameObject
     {
         powerUps.Add( new PowerUp { x = w, y = h } );
         AddChild( powerUps[i] );
-        powerTimed = Time.time; //when did the lasy
+        powerTimed = Time.time; //when did the last power spawn
         powerUpCount++; //how many powers have spawned?
     }
    //---------------------------------------------------------

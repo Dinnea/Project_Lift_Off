@@ -19,7 +19,6 @@ class PlayerGreen : Player
 
         this.wallCrusher = false;
         this.canBeHit = true;
-        SetScaleXY(0.7f, 0.7f);
 
         //movement keys override
         this.keyLeft = Key.LEFT;

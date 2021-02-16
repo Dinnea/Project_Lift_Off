@@ -16,6 +16,7 @@ namespace GXPEngine
         Button _menuButton;
         Button _restartButton;
         Button _exitButton;
+        Button _nextLevelButton;
 
         public GameOver()
         {
@@ -62,22 +63,28 @@ namespace GXPEngine
             //                    Buttons
             //-------------------------------------------------
 
+            _nextLevelButton = new Button();
+            AddChild(_nextLevelButton);
+            _nextLevelButton.x = ((game.width / 2));
+            _nextLevelButton.y = 700;
+            _nextLevelButton.SetOrigin(_nextLevelButton.width / 2f, _nextLevelButton.height / 2f);
+
             _restartButton = new Button();
             AddChild(_restartButton);
             _restartButton.x = ((game.width / 2) - 100);
-            _restartButton.y = 700;
+            _restartButton.y = 800;
             _restartButton.SetOrigin(_restartButton.width / 2f, _restartButton.height / 2f);
 
             _menuButton = new Button();
             AddChild(_menuButton);
             _menuButton.x = (game.width / 2);
-            _menuButton.y = 700;
+            _menuButton.y = 800;
             _menuButton.SetOrigin(_menuButton.width / 2f, _menuButton.height / 2f);
 
             _exitButton = new Button();
             AddChild(_exitButton);
             _exitButton.x = ((game.width / 2) + 100);
-            _exitButton.y = 700;
+            _exitButton.y = 800;
             _exitButton.SetOrigin(_exitButton.width / 2f, _exitButton.height / 2f);
         }
 
@@ -109,9 +116,22 @@ namespace GXPEngine
 
             if (Input.GetMouseButtonUp(0))
             {
+                //Next level button
+                if (_nextLevelButton.HitTestPoint(Input.mouseX, Input.mouseY))
+                {
+                    _nextLevelButton.LateDestroy();
+                    _restartButton.LateDestroy();
+                    _menuButton.LateDestroy();
+                    _exitButton.LateDestroy();
+
+                    Menu.switchMenu = 4;
+                    LateDestroy();
+                }
+
                 //Restart button
                 if (_restartButton.HitTestPoint(Input.mouseX, Input.mouseY))
                 {
+                    _nextLevelButton.LateDestroy();
                     _restartButton.LateDestroy();
                     _menuButton.LateDestroy();
                     _exitButton.LateDestroy();
@@ -125,6 +145,7 @@ namespace GXPEngine
 
                 if (_menuButton.HitTestPoint(Input.mouseX, Input.mouseY))
                 {
+                    _nextLevelButton.LateDestroy();
                     _restartButton.LateDestroy();
                     _menuButton.LateDestroy();
                     _exitButton.LateDestroy();

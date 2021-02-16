@@ -44,7 +44,7 @@
     <Compile Include="GXPEngine\AddOns\TiledLoader.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="Keys.cs" />
-    <Compile Include="FirstLevel.cs" />
+    <Compile Include="Levels.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MyGame.cs" />

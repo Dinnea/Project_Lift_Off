@@ -172,14 +172,15 @@ class Player : Sprite
         {
             hasPowerup = false;
             timer = 0;
+            powerTime = 2;
             wallCrusher = false;
             if ( playerNumber == 1)
             {
-                speed = 1f;
+                speed = 2f;
             }
             else if ( playerNumber == 2)
             {
-                speed = 0.7f;
+                speed = 1.4f;
             }
         }
     }
@@ -202,6 +203,7 @@ class Player : Sprite
                 keyDown = Key.DOWN;
                 keyRight = Key.RIGHT;
 
+                powerTime = 2;
                 hasBad = false;
                 timer = 0;
             }
@@ -218,8 +220,9 @@ class Player : Sprite
                 keyUp = Key.W;
                 keyLeft = Key.A;
                 keyDown = Key.S;
-                keyRight = Key.D;              
-                
+                keyRight = Key.D;
+
+                powerTime = 2;
                 hasBad = false;
                 timer = 0;
             }

@@ -103,6 +103,9 @@ public class Level : GameObject
             case 7:
                 newTile = new Border();
                 break;
+            case 8:
+                newTile = new MovingWall();
+                break;
         }
 
         if ( newTile != null )

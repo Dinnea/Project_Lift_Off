@@ -38,10 +38,10 @@ public class Keys : Sprite //Keys that need to be picked up by pgreen
             playerInteraction();
         }
 
-        if (other is Wall || other is PowerUp || other is Keys || other is Exit)
+        if (other is Wall || other is PowerUp || other is Keys || other is Exit )
         {
-            this.x = _rnd.Next(2, 21) * 64;
-            this.y = 100 + _rnd.Next(2, 15) * 64;
+            this.x = _rnd.Next(2, 20) * 64;
+            this.y = 100 + _rnd.Next(2, 14) * 64;
         }
     }
 

@@ -124,7 +124,7 @@ namespace GXPEngine
                     _menuButton.LateDestroy();
                     _exitButton.LateDestroy();
 
-                    Menu.switchMenu = 4;
+                    Menu.switchMenu = 3 + Menu.currentLevel;
                     LateDestroy();
                 }
 
@@ -136,7 +136,7 @@ namespace GXPEngine
                     _menuButton.LateDestroy();
                     _exitButton.LateDestroy();
 
-                    Menu.switchMenu = 3;
+                    Menu.switchMenu = 2 + Menu.currentLevel;
                     LateDestroy();
                 }
                 

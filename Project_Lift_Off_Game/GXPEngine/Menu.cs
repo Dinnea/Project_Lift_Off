@@ -25,8 +25,7 @@ public class Menu : GameObject
     private GameOver _gameOver;
     private FirstLevel _level1;
     private SecondLevel _level2;
-    private HUD _hud1;
-    private HUD _hud2;
+    private HUD _hud;
     private Menu _menu;
 
     public static int switchMenu = 0; // Restarts, and resets menu again. (0 = start) (1 = gameover) (2 = reset to menu)
@@ -95,8 +94,16 @@ public class Menu : GameObject
             case 1:
                 _hasStarted = false;
                 _hasEnded = true;
-                _level1.LateDestroy();
-                _hud1.LateDestroy();
+                switch (currentLevel)
+                {
+                    case 1:
+                        _level1.LateDestroy();
+                        break;
+                    case 2:
+                        _level2.LateDestroy();
+                        break;
+                }
+                _hud.LateDestroy();
                 showGameOver();
                 break;
 
@@ -109,12 +116,8 @@ public class Menu : GameObject
                 playerID = 0;
                 break;
             case 3:
-                currentLevel = 1;
                 _hasStarted = true;
                 startLevel1();
-                hideMenu();
-                _menuPress.Play();
-                switchMenu = 0;
                 if (_hasEnded == true)
                 {
                     _gameOver.LateDestroy();
@@ -122,12 +125,8 @@ public class Menu : GameObject
                 }
                 break;
             case 4:
-                currentLevel = 2;
                 _hasStarted = true;
                 startLevel2();
-                hideMenu();
-                _menuPress.Play();
-                switchMenu = 0;
                 if (_hasEnded == true)
                 {
                     _gameOver.LateDestroy();
@@ -184,8 +183,7 @@ public class Menu : GameObject
     void showGameOver()
     {
         if (_hasEnded == true && switchMenu == 1)
-        {
-            currentLevel = 0;
+        { 
             _gameOver = new GameOver();
             AddChild(_gameOver);
         }
@@ -197,14 +195,19 @@ public class Menu : GameObject
     {
         if (_hasStarted == true)
         {
-            
+            hideMenu();
+            _menuPress.Play();
+            switchMenu = 0;
+
+            currentLevel = 1;
             _level1 = new FirstLevel();
             AddChild(_level1);
 
-            _hud1 = new HUD(_level1);
-            AddChild(_hud1);
+            _hud = new HUD(_level1);
+            AddChild(_hud);
 
-            _hud1.Translate(5, 900);
+            _level1.Translate(0, 100);
+            _hud.Translate(5, 5);
         }
     }
 
@@ -212,14 +215,19 @@ public class Menu : GameObject
     {
         if (_hasStarted == true)
         {
+            hideMenu();
+            _menuPress.Play();
+            switchMenu = 0;
+
             currentLevel = 2;
             _level2 = new SecondLevel();
             AddChild(_level2);
 
-            _hud2 = new HUD(_level1);
-            AddChild(_hud2);
+            _hud = new HUD(_level2);
+            AddChild(_hud);
 
-            _hud2.Translate(5, 900);
+            _level2.Translate(0, 100);
+            _hud.Translate(5, 5);
         }
     }
 

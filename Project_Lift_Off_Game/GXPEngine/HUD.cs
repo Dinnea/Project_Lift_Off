@@ -8,19 +8,19 @@ using GXPEngine;
 
 public class HUD : Canvas  //Games HUD
 {
-    private FirstLevel _level1;
-    private SecondLevel _level2;
+    private Level _level1;
+    private Level _level2;
 
-    public HUD( Level level ) : base( 1270, 200 )
+    public HUD( Level level ) : base( 1270, 85 )
     {
         switch (Menu.currentLevel)
         {
             //_level = level;
             case 1:
-                _level1 = (FirstLevel)level;
+                _level1 = level;
                 break;
             case 2:
-                _level2 = (SecondLevel)level;
+                _level2 = level;
                 break;
         }
        
@@ -28,7 +28,7 @@ public class HUD : Canvas  //Games HUD
 
     void Update()
     {
-        switch (Menu.switchMenu)
+        switch (Menu.currentLevel)
         {
             case 1:
                 graphics.Clear(Color.White);

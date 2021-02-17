@@ -20,16 +20,19 @@ class Player : Sprite
 
 
     // POWERUP VARIABLES
-    protected bool hasPowerup;
+    protected bool hasPowerup = false;
+    protected bool hasBad = false;
     protected int powerId;
     protected Random rnd = new Random();
     protected int powerTime = 2;
+    protected int badTime = 5;
     protected int timePickedUp;
     protected int timer;
     protected bool wallCrusher;
     protected int isItTime;
     protected bool canBeHit;
     protected int playerNumber;
+    protected int isItBad;
 
     public Player( String filename ) : base( filename )
     {
@@ -38,11 +41,7 @@ class Player : Sprite
     
         void Update()
         {
-        //Check for power up!
-            if ( hasPowerup )
-            {
-                poweredUp();
-            }
+        
         }
 
     //--------------------------------------------------
@@ -104,30 +103,39 @@ class Player : Sprite
         //Power up collision!
         if ( other is PowerUp )
         {
-
-            isItTime = rnd.Next( 1, 5 );
-
-            if ( isItTime == 1 )
+            isItBad = rnd.Next(1, 11);
+            if ( isItBad == 1 )
             {
-                Level.maxTime = Level.maxTime - 5;
-                other.LateDestroy();
-            }
-            else
-            {
-                hasPowerup = true;
+                hasBad = true;
                 timePickedUp = Time.time;
-                powerId = rnd.Next( 1, 4 );
                 other.LateDestroy();
             }
+            else {
+                isItTime = rnd.Next(1, 5);
+
+                if ( isItTime == 1 )
+                {
+                    Level.maxTime = Level.maxTime - 5;
+                    other.LateDestroy();
+                }
+                else
+                {
+                    hasPowerup = true;
+                    timePickedUp = Time.time;
+                    powerId = rnd.Next(1, 4);
+                    other.LateDestroy();
+                }
+            }
+            
         }
     }
     //-------------------------------------
     //              PowerUps
     //------------------------------------
 
-    public void poweredUp()
+    public void PoweredUp()
     {
-         timer = ( Time.time -  timePickedUp ) / 1000;
+        timer = ( Time.time -  timePickedUp ) / 1000;
         switch ( powerId )
         {
             case 1:
@@ -164,5 +172,47 @@ class Player : Sprite
                 speed = 0.7f;
             }
         }
-    } 
+    }
+
+    public void Trap()
+    {
+        timer = ( Time.time - timePickedUp ) / 1000;
+
+        if ( playerNumber == 1 )
+        {
+            keyUp = Key.DOWN;
+            keyLeft = Key.RIGHT;
+            keyDown = Key.UP;
+            keyRight = Key.LEFT;
+
+            if ( timer >= badTime )
+            {
+                keyUp = Key.UP;
+                keyLeft = Key.LEFT;              
+                keyDown = Key.DOWN;
+                keyRight = Key.RIGHT;
+
+                hasBad = false;
+                timer = 0;
+            }
+        }
+        if ( playerNumber == 2 )
+        {
+            keyUp = Key.S;
+            keyLeft = Key.D;
+            keyDown = Key.W;
+            keyRight = Key.A;
+
+            if ( timer >= badTime )
+            {
+                keyUp = Key.W;
+                keyLeft = Key.A;
+                keyDown = Key.S;
+                keyRight = Key.D;              
+                
+                hasBad = false;
+                timer = 0;
+            }
+        }
+    }
 }

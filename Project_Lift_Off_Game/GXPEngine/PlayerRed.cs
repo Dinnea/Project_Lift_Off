@@ -21,5 +21,17 @@ class PlayerRed : Player
     void Update()
     {
         PlayerMovement();
+        //Check for power up!
+        if (hasPowerup)
+        {
+            PoweredUp();
+        }
+
+        //check for bad
+
+        if (hasBad)
+        {
+            Trap();
+        }
     }
 }

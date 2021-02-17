@@ -5,7 +5,7 @@ using GXPEngine;								// GXPEngine contains the engine
 public class MyGame : Game
 {
 
-	public MyGame() : base(1280, 1000, false)		// Create a window that's 800x600 and NOT fullscreen
+	public MyGame() : base(1280, 1005, false)		// Create a window that's 800x600 and NOT fullscreen
 	{
 		Menu menu = new Menu();
 		AddChild(menu);

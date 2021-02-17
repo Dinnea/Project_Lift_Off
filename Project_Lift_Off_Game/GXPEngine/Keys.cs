@@ -23,7 +23,7 @@ public class Keys : Sprite //Keys that need to be picked up by pgreen
         _time = (Time.time);
         _timeLeftToReloc = ((_time - _relocTimed) / 1000);
 
-        if (_timeLeftToReloc >= 10)
+        if (_timeLeftToReloc >= 15)
         {
             this.x = _rnd.Next(1, 22) * 64;
             this.y = _rnd.Next(1, 16) * 64;

@@ -36,9 +36,8 @@ class Player : Sprite
 
     public Player( String filename ) : base( filename )
     {
-        SetScaleXY(0.8f, 0.8f);
-    }
-    
+        SetScaleXY(0.7f, 0.7f);
+    }    
         void Update()
         {
         

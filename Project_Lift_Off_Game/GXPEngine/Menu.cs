@@ -31,6 +31,7 @@ public class Menu : GameObject
     public static int switchMenu = 0; // Restarts, and resets menu again. (0 = start) (1 = gameover) (2 = reset to menu)
     public static int playerID = 0; // Winner in GameOver.cs
     public static int currentLevel; //Checks which level it is
+    public static int finalLevel = 2; //currently final level
     public Menu()
     {
         _menuPress = new Sound("menu.wav", false, false);

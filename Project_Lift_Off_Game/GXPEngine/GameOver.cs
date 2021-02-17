@@ -62,12 +62,14 @@ namespace GXPEngine
             //-------------------------------------------------
             //                    Buttons
             //-------------------------------------------------
-
-            _nextLevelButton = new Button();
-            AddChild(_nextLevelButton);
-            _nextLevelButton.x = ((game.width / 2));
-            _nextLevelButton.y = 700;
-            _nextLevelButton.SetOrigin(_nextLevelButton.width / 2f, _nextLevelButton.height / 2f);
+            if (Menu.currentLevel != Menu.finalLevel)
+            {
+                _nextLevelButton = new Button();
+                AddChild(_nextLevelButton);
+                _nextLevelButton.x = ((game.width / 2));
+                _nextLevelButton.y = 700;
+                _nextLevelButton.SetOrigin(_nextLevelButton.width / 2f, _nextLevelButton.height / 2f);
+            }            
 
             _restartButton = new Button();
             AddChild(_restartButton);
@@ -116,16 +118,19 @@ namespace GXPEngine
 
             if (Input.GetMouseButtonUp(0))
             {
-                //Next level button
-                if (_nextLevelButton.HitTestPoint(Input.mouseX, Input.mouseY))
+                if (Menu.currentLevel != Menu.finalLevel)
                 {
-                    _nextLevelButton.LateDestroy();
-                    _restartButton.LateDestroy();
-                    _menuButton.LateDestroy();
-                    _exitButton.LateDestroy();
+                    //Next level button
+                    if (_nextLevelButton.HitTestPoint(Input.mouseX, Input.mouseY))
+                    {
+                        _nextLevelButton.LateDestroy();
+                        _restartButton.LateDestroy();
+                        _menuButton.LateDestroy();
+                        _exitButton.LateDestroy();
 
-                    Menu.switchMenu = 3 + Menu.currentLevel;
-                    LateDestroy();
+                        Menu.switchMenu = 3 + Menu.currentLevel;
+                        LateDestroy();
+                    }
                 }
 
                 //Restart button

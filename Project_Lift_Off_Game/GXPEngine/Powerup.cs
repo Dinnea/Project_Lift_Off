@@ -15,10 +15,10 @@ public class PowerUp : Sprite
 
     void OnCollision(GameObject other)
     {
-        if (other is Wall)
+        if (other is Wall || other is Keys || other is Exit)
         {
-            this.x = _rnd.Next(1, 22) * 64;
-            this.y = _rnd.Next(1, 16) * 64;
+            this.x = _rnd.Next(2, 21) * 64;
+            this.y = 100 + _rnd.Next(2, 15) * 64;
         }
     }
 }

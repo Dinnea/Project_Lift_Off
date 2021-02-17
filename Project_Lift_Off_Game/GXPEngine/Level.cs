@@ -8,7 +8,7 @@ using GXPEngine;
 public class Level : GameObject
 {
     //Timer related variables
-    protected int timeLoaded;
+    public int timeLoaded;
     protected int time;
     public int timeLeft;
     public static int maxTime = 180;

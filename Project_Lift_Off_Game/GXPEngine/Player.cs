@@ -115,8 +115,18 @@ class Player : Sprite
 
                 if ( isItTime == 1 )
                 {
-                    Level.maxTime = Level.maxTime - 5;
-                    other.LateDestroy();
+                    if (playerNumber == 1)
+                    {
+                        Level.maxTime = Level.maxTime + 5;
+                        other.LateDestroy();
+                    }
+                    
+                    if ( playerNumber == 2)
+                    {
+                        Level.maxTime = Level.maxTime + 5;
+                        other.LateDestroy();
+                    }
+                    
                 }
                 else
                 {

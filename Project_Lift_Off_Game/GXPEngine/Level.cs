@@ -166,9 +166,8 @@ public class Level : GameObject
             for ( int column = 0; column < width; column++ ) //assign Y coordinates
             {
                 int id = levelData[row, column];
-                addTile( column -1 , row -1 , id );
+                addTile( column -1 , row -1  , id );
             }
-
         }
     }
     //-------------------------------------------------------

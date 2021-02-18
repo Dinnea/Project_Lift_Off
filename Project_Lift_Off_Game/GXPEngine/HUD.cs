@@ -29,10 +29,10 @@ public class HUD : Canvas  //Games HUD
 
     void Update()
     {
-        graphics.Clear(Color.White);
-        graphics.DrawString("There is only", _font, Brushes.Black, 0, 5); //How much time is left?
-        graphics.DrawString(" " + _level.GetTime() + "  ", _numberFont, Brushes.Black, 200, 10);
-        graphics.DrawString("seconds left", _font, Brushes.Black, 265, 5);
-        graphics.DrawString(" . . .", _numberFont, Brushes.Black, 445, 10);
+        graphics.Clear(Color.Empty);
+        graphics.DrawString("There is only", _font, Brushes.White, 0, 5); //How much time is left?
+        graphics.DrawString(" " + _level.GetTime() + "  ", _numberFont, Brushes.White, 200, 10);
+        graphics.DrawString("seconds left", _font, Brushes.White, 265, 5);
+        graphics.DrawString(" . . .", _numberFont, Brushes.White, 445, 10);
     }
 }

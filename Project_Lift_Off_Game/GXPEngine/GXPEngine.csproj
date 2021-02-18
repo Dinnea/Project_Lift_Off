@@ -47,7 +47,6 @@
     <Compile Include="Levels.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Menu.cs" />
-    <Compile Include="MovingWalls.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="GXPEngine\Canvas.cs" />
     <Compile Include="GXPEngine\Game.cs" />

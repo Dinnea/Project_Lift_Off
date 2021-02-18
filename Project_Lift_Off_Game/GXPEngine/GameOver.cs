@@ -8,6 +8,7 @@ namespace GXPEngine
 
         Sound _win1Sound;
         Sound _win2Sound;
+        Sound _press;
 
         int _winner;
         int _soundCheck;
@@ -21,6 +22,7 @@ namespace GXPEngine
         {
             _win1Sound = new Sound("winner.wav", false, false);
             _win2Sound = new Sound("Queen_laugh.wav", false, false);
+            _press = new Sound("menu.wav");
 
             _winner = 0;
             _soundCheck = 0;
@@ -160,6 +162,7 @@ namespace GXPEngine
 
                 if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY))
                 {
+                    _press.Play();
                     System.Environment.Exit(1);
                 }
             }

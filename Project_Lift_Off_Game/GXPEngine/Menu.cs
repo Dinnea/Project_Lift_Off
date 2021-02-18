@@ -13,7 +13,7 @@ public class Menu : GameObject
     private Sprite _menu;
     private Sprite _logo;
 
-    private Sound _menuPress;
+    Sound menuPress;
     private Sound _menuBack;
 
     bool _hasStarted;
@@ -32,7 +32,7 @@ public class Menu : GameObject
     public static int finalLevel = 3; //currently final level
     public Menu()
     {
-        _menuPress = new Sound("menu.wav", false, false);
+        menuPress = new Sound("menu.wav", false, false);
         _menuBack = new Sound("menuBack.wav", false, false);
 
         _hasStarted = false;
@@ -185,7 +185,7 @@ public class Menu : GameObject
         if (_hasStarted == true)
         {
             hideMenu();
-            _menuPress.Play();
+            menuPress.Play();
             switchMenu = 0;
 
             currentLevel = 1;
@@ -205,7 +205,7 @@ public class Menu : GameObject
         if (_hasStarted == true)
         {
             hideMenu();
-            _menuPress.Play();
+            menuPress.Play();
             switchMenu = 0;
 
             currentLevel = 2;
@@ -224,7 +224,7 @@ public class Menu : GameObject
         if (_hasStarted == true)
         {
             hideMenu();
-            _menuPress.Play();
+            menuPress.Play();
             switchMenu = 0;
 
             currentLevel = 3;

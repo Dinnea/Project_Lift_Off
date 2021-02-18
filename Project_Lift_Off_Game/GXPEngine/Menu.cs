@@ -47,7 +47,7 @@ public class Menu : GameObject
         _logo = new Sprite("logo.png");
         AddChild(_logo);
         _logo.SetOrigin(_logo.width / 2f, _logo.height / 2f);
-        _logo.SetScaleXY(0.5f, 0.5f);
+        //_logo.SetScaleXY(0.5f, 0.5f);
         _logo.x = (game.width) / 2;
         _logo.y = 110;
 

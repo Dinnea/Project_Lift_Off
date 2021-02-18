@@ -13,6 +13,12 @@ class Player : Sprite
     protected int keyUp = Key.W;
     protected int keyDown = Key.S;
 
+    //MOVEMENT CHECK PLAYERS MOVEMENT
+    protected int mActive1;
+    protected bool mActive1Lock;
+    protected int mActive2;
+    protected bool mActive2Lock;
+
     // SPEED VARIABLES
     protected float speed;
     protected float xSpeed;
@@ -43,7 +49,9 @@ class Player : Sprite
         _powerUp = new Sound("Powerup.wav");
         _trap = new Sound("trap.wav");
 
-        SetScaleXY(0.7f, 0.7f);
+        //SetScaleXY(0.7f, 0.7f);
+        this.SetScaleXY(0.4f, 0.4f);
+        //this.SetXY(64, 64);
     }    
         void Update()
         {
@@ -59,31 +67,62 @@ class Player : Sprite
         xSpeed = 0;
         ySpeed = 0;
 
+        //check movement players
+        mActive1 = 0;
+        mActive1Lock = true;
+
+        //check movement players
+        mActive2 = 0;
+        mActive2Lock = true;
+
+        if (xSpeed == 0 || ySpeed == 0)
+        {
+            mActive1Lock = true;
+            mActive2Lock = true;
+        }
+
         if ( Input.GetKey ( keyLeft ) )
         {
             xSpeed = -speed;
-            //SetFrame(5);
-            //this.scaleX = -1;
+
+            mActive1 = 1;
+            mActive1Lock = false;
+
+            mActive2Lock = false;
+            mActive2 = 1;
         }
 
         if ( Input.GetKey ( keyRight ) )
         {
             xSpeed = speed;
-            //SetFrame(2);
-            //this.scaleX = 1;
+
+            mActive1 = 2;
+            mActive1Lock = false;
+
+            mActive2Lock = false;
+            mActive2 = 2;
         }
 
         if ( Input.GetKey ( keyUp ) )
         {
             ySpeed = -speed;
-            //this.scaleY = 1;
-            //SetCycle(7,7,30,false);
+
+            mActive1 = 3;
+            mActive1Lock = false;
+
+            mActive2Lock = false;
+            mActive2 = 3;
         }
 
         if ( Input.GetKey ( keyDown ) )
         {
             ySpeed = speed;
-            //this.scaleY = -1;
+
+            mActive1 = 4;
+            mActive1Lock = false;
+
+            mActive2Lock = false;
+            mActive2 = 4;
         }
 
         Move( xSpeed, ySpeed );

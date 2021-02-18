@@ -9,7 +9,10 @@ class PlayerGreen : Player
 {
     private Sound _doorOpen;
     private Sound _keyCollect;
+
     private int _storedKeys; // How many keys the player holds. 
+
+    PlayerGreenAnimation _playerMove1;
 
     public PlayerGreen() : base("circle.png")
     {
@@ -22,6 +25,8 @@ class PlayerGreen : Player
         this.speed = 2f;
         this.playerNumber = 1;
 
+        this.SetScaleXY(0.4f, 0.4f);
+
         this.wallCrusher = false;
         this.canBeHit = true;
 
@@ -30,10 +35,45 @@ class PlayerGreen : Player
         this.keyRight = Key.RIGHT;
         this.keyUp = Key.UP;
         this.keyDown = Key.DOWN;
+
+        _playerMove1 = new PlayerGreenAnimation();
+        AddChild(_playerMove1);
     }
 
     void Update()
     {
+        // PLAYER 1 
+        if (mActive1Lock == true)
+        {
+            this.alpha = 1;
+            _playerMove1.alpha = 0;
+        }
+        else if (mActive1Lock == false)
+        {
+            _playerMove1.alpha = 1;
+            this.alpha = 0;
+        }
+
+        if (mActive1 == 1) //move left
+        {
+            _playerMove1.rotation = 270;
+        }
+
+        if (mActive1 == 2) //move right
+        {
+            _playerMove1.rotation = 90;
+        }
+
+        if (mActive1 == 3) //move up
+        {
+            _playerMove1.rotation = 180;
+        }
+
+        if (mActive1 == 4) //move down
+        {
+            _playerMove1.rotation = 0;
+        }
+
         PlayerMovement();
         //Check for power up!
         if (hasPowerup)

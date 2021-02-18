@@ -87,7 +87,9 @@
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerGreen.cs" />
+    <Compile Include="PlayerGreenAnimation.cs" />
     <Compile Include="PlayerRed.cs" />
+    <Compile Include="PlayerRedAnimation.cs" />
     <Compile Include="Powerup.cs" />
     <Compile Include="Wall.cs" />
   </ItemGroup>

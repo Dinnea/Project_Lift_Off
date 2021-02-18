@@ -9,6 +9,10 @@ using GXPEngine;
 
 public class Menu : GameObject
 {
+    PrivateFontCollection fonts = new PrivateFontCollection();
+    public Font font;
+    public Font numberFont;
+
     private Button _startButton;
     private Button _exitButton;
 
@@ -36,10 +40,15 @@ public class Menu : GameObject
     public static int finalLevel = 3; //currently final level
     public Menu()
     {
+        //fonts
+        fonts.AddFontFile("Gingerbread_House.ttf");
+        fonts.AddFontFile("hazel_grace.ttf");
+        font = new Font(fonts.Families[0], 40);
+        numberFont = new Font(fonts.Families[1], 50);
+
         menuPress = new Sound("menu.wav", false, false);
         _menuBack = new Sound("menuBack.wav", false, false);
 
-        _text = new Canvas(1280, 1005, false);
 
         _hasStarted = false;
         _hasEnded = false;
@@ -69,11 +78,22 @@ public class Menu : GameObject
         _exitButton.x = 915;
         _exitButton.y = 880;
         _exitButton.SetOrigin(_exitButton.width / 2f, _exitButton.height / 2f);
+
+        ///////////////////////// Text ///////////////////////////////
+ 
+        _text = new Canvas(1280, 1005);
+        AddChild(_text);
+
+        _text.graphics.DrawString("Start", font, Brushes.White, 310, 847);
+        _text.graphics.DrawString("Quit", font, Brushes.White, 870, 847);
+
+
+
     }
 
     void Update()
     {
-         switch (switchMenu)
+        switch (switchMenu)
         {
             case 1:
                 _hasStarted = false;
@@ -162,6 +182,7 @@ public class Menu : GameObject
         _exitButton.visible = false;
         _logo.visible = false;
         _menu.visible = false;
+        _text.visible = false;
     }
 
     void showMenu()
@@ -170,6 +191,7 @@ public class Menu : GameObject
         _exitButton.visible = true;
         _logo.visible = true;
         _menu.visible = true;
+        _text.visible = true;
     }
 
     void showGameOver()

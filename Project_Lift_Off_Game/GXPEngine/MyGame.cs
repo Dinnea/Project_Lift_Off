@@ -1,11 +1,13 @@
 using System;									// System contains a lot of default C# libraries 
 using System.Drawing;                           // System.Drawing contains a library used for canvas drawing below
+using System.Drawing.Text;
 using GXPEngine;								// GXPEngine contains the engine
 
 public class MyGame : Game
 {
 	Sound bckgMusic;
 	Sprite loading;
+
 
 	public MyGame() : base(1280, 1005, false)		// Create a window that's 800x600 and NOT fullscreen
 	{
@@ -15,8 +17,7 @@ public class MyGame : Game
 		bckgMusic = new Sound("bckgMusic.mp3", true, false);
 		Menu menu = new Menu();
 		AddChild(menu);
-		//GameOver gameOver = new GameOver();
-		//AddChild(gameOver);
+		
 		bckgMusic.Play();
 
 	}

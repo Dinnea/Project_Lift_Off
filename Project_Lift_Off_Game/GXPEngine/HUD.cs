@@ -9,7 +9,6 @@ using GXPEngine;
 
 public class HUD : Canvas  //Games HUD
 {
-
     PrivateFontCollection fonts = new PrivateFontCollection();
     public Font font;
     public Font numberFont;
@@ -20,11 +19,11 @@ public class HUD : Canvas  //Games HUD
     {
         _level = level;
 
+        //fonts
         fonts.AddFontFile("Gingerbread_House.ttf");
         fonts.AddFontFile("hazel_grace.ttf");
         font = new Font(fonts.Families[0], 40);
         numberFont = new Font(fonts.Families[1], 50);
-
     }
 
     void Update()

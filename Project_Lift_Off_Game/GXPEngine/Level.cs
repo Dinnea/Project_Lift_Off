@@ -28,13 +28,15 @@ public class Level : GameObject
     protected const int tileSize = 64;
     protected int[,] levelData = null;
 
-    //Sound
+    //Sprite
+    public Sprite levelBckg;
 
 
 
     public Level()
     {
-        buildLevel();
+
+        BuildLevel();
         startMusic();
     }
 
@@ -160,7 +162,7 @@ public class Level : GameObject
     //-----------------------------------------------------------------------------------
 
 
-    private void buildLevel()
+    public virtual void BuildLevel()
     {
         LoadLevel();
         timeLoaded = ( Time.time / 1000 );  //makes sure that the timer wont start counting down before the level is loaded

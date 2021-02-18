@@ -13,7 +13,7 @@ public class FirstLevel : Level
 {
     public FirstLevel()
     {
-        
+
     }
     void Update()
     {
@@ -54,11 +54,18 @@ public class FirstLevel : Level
             {7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 },  // border
         };
     }
+    public override void BuildLevel()
+    {
+        levelBckg = new Sprite("background.png");
+        AddChild(levelBckg);
+        base.BuildLevel();
+    }
 }
-//-------------------------------------------------------------------
-//                         Level2
-//-------------------------------------------------------------------
-public class SecondLevel : Level
+    
+    //-------------------------------------------------------------------
+    //                         Level2
+    //-------------------------------------------------------------------
+    public class SecondLevel : Level
 {
     public SecondLevel()
     {
@@ -103,7 +110,14 @@ public class SecondLevel : Level
             {7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 },  // border
         };
     }
-}
+
+        public override void BuildLevel()
+        {
+            levelBckg = new Sprite("background.png");
+            AddChild(levelBckg);
+            base.BuildLevel();
+        }
+    }
 
 //-------------------------------------------------------------------
 //                         Level3
@@ -153,4 +167,10 @@ public class ThirdLevel : Level
             {7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 },  // border
         };
     }
-}
+        public override void BuildLevel()
+        {
+            levelBckg = new Sprite("background.png");
+            AddChild(levelBckg);
+            base.BuildLevel();
+        }
+    }

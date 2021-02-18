@@ -42,21 +42,13 @@ namespace GXPEngine
             }
 
             //Player green big sprite
-            _player1 = new Sprite("circle.png");
+            _player1 = new Sprite("fluff_wins.png");
             AddChild(_player1);
-            _player1.x = (game.width / 2);
-            _player1.y = (game.height / 2.5f);
-            _player1.SetOrigin(_player1.width / 2f, _player1.height / 2f);
-            _player1.SetScaleXY(5f, 5f);
             _player1.visible = false;
 
             //Player red big sprite
-            _player2 = new Sprite("circle2.png");
+            _player2 = new Sprite("queen_wins.png");
             AddChild(_player2);
-            _player2.x = (game.width / 2);
-            _player2.y = (game.height / 2.5f);
-            _player2.SetOrigin(_player2.width / 2f, _player2.height / 2f);
-            _player2.SetScaleXY(5f, 5f);
             _player2.visible = false;
 
             //-------------------------------------------------

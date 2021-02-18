@@ -11,8 +11,8 @@ public class HUD : Canvas  //Games HUD
 {
 
     PrivateFontCollection fonts = new PrivateFontCollection();
-    private Font _font;
-    private Font _numberFont;
+    public Font font;
+    public Font numberFont;
 
     private Level _level;
 
@@ -22,17 +22,17 @@ public class HUD : Canvas  //Games HUD
 
         fonts.AddFontFile("Gingerbread_House.ttf");
         fonts.AddFontFile("hazel_grace.ttf");
-        _font = new Font(fonts.Families[0], 40);
-        _numberFont = new Font(fonts.Families[1], 50);
+        font = new Font(fonts.Families[0], 40);
+        numberFont = new Font(fonts.Families[1], 50);
 
     }
 
     void Update()
     {
         graphics.Clear(Color.Empty);
-        graphics.DrawString("There is only", _font, Brushes.White, 0, 5); //How much time is left?
-        graphics.DrawString(" " + _level.GetTime() + "  ", _numberFont, Brushes.White, 200, 10);
-        graphics.DrawString("seconds left", _font, Brushes.White, 265, 5);
-        graphics.DrawString(" . . .", _numberFont, Brushes.White, 445, 10);
+        graphics.DrawString("There is only", font, Brushes.White, 0, 5); //How much time is left?
+        graphics.DrawString(" " + _level.GetTime() + "  ", numberFont, Brushes.White, 200, 10);
+        graphics.DrawString("seconds left", font, Brushes.White, 265, 5);
+        graphics.DrawString(" . . .", numberFont, Brushes.White, 445, 10);
     }
 }

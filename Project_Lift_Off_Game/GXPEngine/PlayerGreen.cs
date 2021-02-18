@@ -105,10 +105,7 @@ class PlayerGreen : Player
 
         if ( other is Keys && _storedKeys == 3)
         {
-        
-            //_keyCollect.Play();
             _doorOpen.Play();
-            _storedKeys = _storedKeys + 1; //pickup a key
         }
 
         if ( other is Exit && _storedKeys == 3 )
@@ -117,10 +114,6 @@ class PlayerGreen : Player
             Menu.playerID = 1;
         }
 
-        else if ( other is Exit && _storedKeys < 3 )
-        {
-            Move(-xSpeed, -ySpeed);
-        }
 
         //player collision
         if ( other is PlayerRed && canBeHit == true )

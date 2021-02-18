@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
+using System.Drawing.Text;
 
 using GXPEngine;
 
@@ -24,6 +26,8 @@ public class Menu : GameObject
     private SecondLevel _level2;
     private ThirdLevel _level3;
     private HUD _hud;
+    private Canvas _text;
+
     //private Menu _menu;
 
     public static int switchMenu = 0; // Restarts, and resets menu again. (0 = start) (1 = gameover) (2 = reset to menu)
@@ -35,9 +39,10 @@ public class Menu : GameObject
         menuPress = new Sound("menu.wav", false, false);
         _menuBack = new Sound("menuBack.wav", false, false);
 
+        _text = new Canvas(1280, 1005, false);
+
         _hasStarted = false;
         _hasEnded = false;
-        //_menu = menu;
 
         ////////////////////////// Menu Art //////////////////////////////
 
@@ -55,17 +60,15 @@ public class Menu : GameObject
 
         _startButton = new Button();
         AddChild(_startButton);
-        _startButton.x = (game.width) / 2;
-        _startButton.y = 500;
+        _startButton.x = 356;
+        _startButton.y = 880;
         _startButton.SetOrigin(_startButton.width / 2f, _startButton.height / 2f);
 
         _exitButton = new Button();
         AddChild(_exitButton);
-        _exitButton.x = (game.width) / 2;
-        _exitButton.y = 600;
+        _exitButton.x = 915;
+        _exitButton.y = 880;
         _exitButton.SetOrigin(_exitButton.width / 2f, _exitButton.height / 2f);
-
-        
     }
 
     void Update()

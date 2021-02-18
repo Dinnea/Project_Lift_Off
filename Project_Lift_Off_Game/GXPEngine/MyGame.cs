@@ -15,6 +15,8 @@ public class MyGame : Game
 		bckgMusic = new Sound("bckgMusic.mp3", true, false);
 		Menu menu = new Menu();
 		AddChild(menu);
+		//GameOver gameOver = new GameOver();
+		//AddChild(gameOver);
 		bckgMusic.Play();
 
 	}

@@ -7,7 +7,7 @@ using GXPEngine;
 
 public class Button: Sprite //Button template. 
 {
-    public Button() : base( "colors.png" ) 
+    public Button() : base( "button.png" ) 
     {
     }
 }

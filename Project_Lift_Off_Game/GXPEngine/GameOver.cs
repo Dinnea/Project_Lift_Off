@@ -150,7 +150,11 @@ namespace GXPEngine
 
                 if (_menuButton.HitTestPoint(Input.mouseX, Input.mouseY))
                 {
-                    _nextLevelButton.LateDestroy();
+                    if (Menu.currentLevel != Menu.finalLevel)
+                    {
+                        _nextLevelButton.LateDestroy();
+                    }
+
                     _restartButton.LateDestroy();
                     _menuButton.LateDestroy();
                     _exitButton.LateDestroy();

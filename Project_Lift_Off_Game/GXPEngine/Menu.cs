@@ -25,13 +25,14 @@ public class Menu : GameObject
     private GameOver _gameOver;
     private FirstLevel _level1;
     private SecondLevel _level2;
+    private ThirdLevel _level3;
     private HUD _hud;
-    private Menu _menu;
+    //private Menu _menu;
 
     public static int switchMenu = 0; // Restarts, and resets menu again. (0 = start) (1 = gameover) (2 = reset to menu)
     public static int playerID = 0; // Winner in GameOver.cs
     public static int currentLevel; //Checks which level it is
-    public static int finalLevel = 2; //currently final level
+    public static int finalLevel = 3; //currently final level
     public Menu()
     {
         _menuPress = new Sound("menu.wav", false, false);
@@ -103,6 +104,9 @@ public class Menu : GameObject
                     case 2:
                         _level2.LateDestroy();
                         break;
+                    case 3:
+                        _level3.LateDestroy();
+                        break;
                 }
                 _hud.LateDestroy();
                 showGameOver();
@@ -128,6 +132,15 @@ public class Menu : GameObject
             case 4:
                 _hasStarted = true;
                 startLevel2();
+                if (_hasEnded == true)
+                {
+                    _gameOver.LateDestroy();
+                    _hasEnded = false;
+                }
+                break;
+            case 5:
+                _hasStarted = true;
+                startLevel3();
                 if (_hasEnded == true)
                 {
                     _gameOver.LateDestroy();
@@ -228,6 +241,25 @@ public class Menu : GameObject
             AddChild(_hud);
 
             _level2.Translate(0, 100);
+            _hud.Translate(5, 5);
+        }
+    }
+    void startLevel3()
+    {
+        if (_hasStarted == true)
+        {
+            hideMenu();
+            _menuPress.Play();
+            switchMenu = 0;
+
+            currentLevel = 3;
+            _level3 = new ThirdLevel();
+            AddChild(_level3);
+
+            _hud = new HUD(_level3);
+            AddChild(_hud);
+
+            _level3.Translate(0, 100);
             _hud.Translate(5, 5);
         }
     }

@@ -7,12 +7,11 @@ using GXPEngine;
 
 public class MovingWall : Wall
 {
-    private Random _rnd;
     private int _blockId;
 
     public MovingWall()
     {
-        _blockId = _rnd.Next(1, 5);
+        
     }
 
     void Update()

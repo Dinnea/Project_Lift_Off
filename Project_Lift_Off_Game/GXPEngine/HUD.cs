@@ -3,41 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Drawing.Text;
 
 using GXPEngine;
 
 public class HUD : Canvas  //Games HUD
 {
-    private Level _level1;
-    private Level _level2;
+
+    PrivateFontCollection fonts = new PrivateFontCollection();
+    private Font _font;
+    private Font _numberFont;
+
+    private Level _level;
 
     public HUD( Level level ) : base( 1270, 85 )
     {
-        switch (Menu.currentLevel)
-        {
-            //_level = level;
-            case 1:
-                _level1 = level;
-                break;
-            case 2:
-                _level2 = level;
-                break;
-        }
-       
+        _level = level;
+
+        fonts.AddFontFile("Gingerbread_House.ttf");
+        fonts.AddFontFile("hazel_grace.ttf");
+        _font = new Font(fonts.Families[0], 40);
+        _numberFont = new Font(fonts.Families[1], 50);
+
     }
 
     void Update()
     {
-        switch (Menu.currentLevel)
-        {
-            case 1:
-                graphics.Clear(Color.White);
-                graphics.DrawString("Time: " + _level1.GetTime(), SystemFonts.DefaultFont, Brushes.Black, 0, 0); //How much time is left?
-                break;
-            case 2:
-                graphics.Clear(Color.White);
-                graphics.DrawString("Time: " + _level2.GetTime(), SystemFonts.DefaultFont, Brushes.Black, 0, 0); //How much time is left?
-                break;
-        }
+        graphics.Clear(Color.White);
+        graphics.DrawString("There is only", _font, Brushes.Black, 0, 5); //How much time is left?
+        graphics.DrawString(" " + _level.GetTime() + "  ", _numberFont, Brushes.Black, 200, 10);
+        graphics.DrawString("seconds left", _font, Brushes.Black, 265, 5);
+        graphics.DrawString(" . . .", _numberFont, Brushes.Black, 445, 10);
     }
 }

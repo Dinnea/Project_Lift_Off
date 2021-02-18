@@ -34,8 +34,15 @@ class Player : Sprite
     protected int playerNumber;
     protected int isItBad;
 
+    //SOUND
+    private Sound _powerUp;
+    private Sound _trap;
+
     public Player( String filename ) : base( filename )
     {
+        _powerUp = new Sound("Powerup.wav");
+        _trap = new Sound("trap.wav");
+
         SetScaleXY(0.7f, 0.7f);
     }    
         void Update()
@@ -105,11 +112,13 @@ class Player : Sprite
             isItBad = rnd.Next(1, 11);
             if ( isItBad == 1 )
             {
+                _trap.Play();
                 hasBad = true;
                 timePickedUp = Time.time;
                 other.LateDestroy();
             }
             else {
+                _powerUp.Play();
                 isItTime = rnd.Next(1, 5);
 
                 if ( isItTime == 1 )

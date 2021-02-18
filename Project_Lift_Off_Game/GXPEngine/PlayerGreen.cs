@@ -7,12 +7,17 @@ using GXPEngine;
 
 class PlayerGreen : Player
 {
-    private int storedKeys; // How many keys the player holds. 
+    private Sound _doorOpen;
+    private Sound _keyCollect;
+    private int _storedKeys; // How many keys the player holds. 
 
     public PlayerGreen() : base("circle.png")
     {
+        _doorOpen = new Sound("EndDoor_Open.wav");
+        _keyCollect = new Sound("Key_collect.wav");
+        
 
-        storedKeys = 0;
+        _storedKeys = 0;
 
         this.speed = 2f;
         this.playerNumber = 1;
@@ -52,18 +57,27 @@ class PlayerGreen : Player
         base.OnCollision( other );
 
         //pickup
-        if ( other is Keys )
+        if ( other is Keys && _storedKeys < 3)
         {
-            storedKeys = storedKeys + 1; //pickup a key
+            _keyCollect.Play();
+            _storedKeys = _storedKeys + 1; //pickup a key
         }
 
-        if ( other is Exit && storedKeys == 3 )
+        if ( other is Keys && _storedKeys == 3)
+        {
+        
+            //_keyCollect.Play();
+            _doorOpen.Play();
+            _storedKeys = _storedKeys + 1; //pickup a key
+        }
+
+        if ( other is Exit && _storedKeys == 3 )
         {
             End();
             Menu.playerID = 1;
         }
 
-        else if ( other is Exit && storedKeys < 3 )
+        else if ( other is Exit && _storedKeys < 3 )
         {
             Move(-xSpeed, -ySpeed);
         }

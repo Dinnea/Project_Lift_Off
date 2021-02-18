@@ -28,6 +28,9 @@ public class Level : GameObject
     protected const int tileSize = 64;
     protected int[,] levelData = null;
 
+    //Sound
+
+
 
     public Level()
     {
@@ -121,6 +124,8 @@ public class Level : GameObject
 
     public virtual void LoadLevel()
     {
+        maxTime = 180;
+
         height = 16;
         width = 22;
 

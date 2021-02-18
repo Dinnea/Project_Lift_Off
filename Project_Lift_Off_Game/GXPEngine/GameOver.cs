@@ -8,7 +8,6 @@ namespace GXPEngine
 
         Sound _win1Sound;
         Sound _win2Sound;
-        Sound _winnerSound;
 
         int _winner;
         int _soundCheck;
@@ -21,6 +20,7 @@ namespace GXPEngine
         public GameOver()
         {
             _win1Sound = new Sound("winner.wav", false, false);
+            _win2Sound = new Sound("Queen_laugh.wav", false, false);
 
             _winner = 0;
             _soundCheck = 0;
@@ -38,6 +38,7 @@ namespace GXPEngine
             else if (Menu.playerID == 2 && _soundCheck == 0) // If red player wins
             {
                 _winner = 2;
+                _win2Sound.Play();
                 _soundCheck = 1;
             }
 

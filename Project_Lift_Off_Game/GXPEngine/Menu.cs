@@ -7,12 +7,14 @@ using GXPEngine;
 
 public class Menu : GameObject
 {
-    Button _startButton;
-    Button _exitButton;
+    private Button _startButton;
+    private Button _exitButton;
 
-    Sprite _menu;
-    Sound _menuPress;
-    Sound _menuBack;
+    private Sprite _menu;
+    private Sprite _logo;
+
+    private Sound _menuPress;
+    private Sound _menuBack;
 
     bool _hasStarted;
     bool _hasEnded;
@@ -41,6 +43,13 @@ public class Menu : GameObject
 
         _menu = new Sprite("menu_screen.png");
         AddChild(_menu);
+
+        _logo = new Sprite("logo.png");
+        AddChild(_logo);
+        _logo.SetOrigin(_logo.width / 2f, _logo.height / 2f);
+        _logo.SetScaleXY(0.5f, 0.5f);
+        _logo.x = (game.width) / 2;
+        _logo.y = 110;
 
         ///////////////////////// Buttons ///////////////////////////////
 
@@ -148,6 +157,7 @@ public class Menu : GameObject
     {
         _startButton.visible = false;
         _exitButton.visible = false;
+        _logo.visible = false;
         _menu.visible = false;
     }
 
@@ -155,6 +165,7 @@ public class Menu : GameObject
     {
         _startButton.visible = true;
         _exitButton.visible = true;
+        _logo.visible = true;
         _menu.visible = true;
     }
 

@@ -11,7 +11,7 @@ public class MyGame : Game
 
 	public MyGame() : base(1280, 1005, false)		// Create a window that's 800x600 and NOT fullscreen
 	{
-		loading = new Sprite("loading_screen.png");
+		//loading = new Sprite("loading_screen.png");
 		//AddChild(loading);
 
 		bckgMusic = new Sound("bckgMusic.mp3", true, false);

@@ -40,6 +40,12 @@ class Player : Sprite
     protected int playerNumber;
     protected int isItBad;
 
+    //POWERUP IMAGERY
+    private Sprite _fast;
+    private Sprite _shield;
+    private Sprite _wall;
+    private Sprite _bad;
+
     //SOUND
     private Sound _powerUp;
     private Sound _trap;
@@ -48,6 +54,33 @@ class Player : Sprite
     {
         _powerUp = new Sound("Powerup.wav");
         _trap = new Sound("trap.wav");
+
+        _fast = new Sprite("powerup.png");
+        _shield = new Sprite("shield.png");
+        _wall = new Sprite("wall_crusher.png");
+        _bad = new Sprite("bad.png");
+
+        AddChild(_fast);
+        AddChild(_shield);
+        AddChild(_wall);
+        AddChild(_bad);
+
+        _fast.visible = false;
+        _shield.visible = false;
+        _wall.visible = false;
+        _bad.visible = false;
+
+        _fast.x = -15;
+        _fast.y = -15;
+
+        _shield.x = -15;
+        _shield.y = -15;
+
+        _wall.x = -15;
+        _wall.y = -15;
+
+        _bad.x = -15;
+        _bad.y = -15;
 
         //SetScaleXY(0.7f, 0.7f);
         this.SetScaleXY(0.4f, 0.4f);
@@ -146,7 +179,7 @@ class Player : Sprite
         }
 
         //Power up collision!
-        if ( other is PowerUp )
+        if ( other is PowerUp && hasPowerup == false && hasBad == false)
         {
             isItBad = rnd.Next(1, 11);
             if ( isItBad == 1 )
@@ -170,7 +203,7 @@ class Player : Sprite
                     
                     if ( playerNumber == 2)
                     {
-                        Level.maxTime = Level.maxTime + 5;
+                        Level.maxTime = Level.maxTime - 5;
                         other.LateDestroy();
                     }
                     
@@ -197,26 +230,34 @@ class Player : Sprite
         {
             case 1:
                  speed = 4.0f;
+                _fast.visible = true;
                 break;
             case 2:
                 if ( playerNumber == 1 )
                 {
                      powerTime = 5;
-                     canBeHit = false;
+                    _shield.visible = true;
+                    canBeHit = false;
                 }
                 else if ( playerNumber == 2 )
                 {
                      speed = 2.1f;
+                    _fast.visible = true;
                     break;
                 }
                 break;
             case 3:
-                 wallCrusher = true;
+                _wall.visible = true;
+                wallCrusher = true;
                 break;
         }
 
         if ( timer >=  powerTime )
         {
+            _fast.visible = false;
+            _shield.visible = false;
+            _wall.visible = false;
+
             hasPowerup = false;
             timer = 0;
             powerTime = 2;
@@ -235,6 +276,7 @@ class Player : Sprite
     public void Trap()
     {
         timer = ( Time.time - timePickedUp ) / 1000;
+        _bad.visible = true;
 
         if ( playerNumber == 1 )
         {
@@ -253,6 +295,7 @@ class Player : Sprite
                 powerTime = 2;
                 hasBad = false;
                 timer = 0;
+                _bad.visible = false;
             }
         }
         if ( playerNumber == 2 )
@@ -272,6 +315,7 @@ class Player : Sprite
                 powerTime = 2;
                 hasBad = false;
                 timer = 0;
+                _bad.visible = false;
             }
         }
     }

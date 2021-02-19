@@ -65,7 +65,7 @@ public class Level : GameObject
 
         timeLeftToPower = ((Time.time - powerTimed) / 1000); //countdown to spawn power
 
-        if (timeLeftToPower == 10)
+        if (timeLeftToPower == 5)
         {
             w = rnd.Next(1, 20) * 64;
             h = rnd.Next(1, 14) * 64;

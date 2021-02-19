@@ -8,7 +8,7 @@ public class PowerUp : Sprite
 {
     private Random _rnd = new Random();
 
-    public PowerUp() : base("triangle2.png")
+    public PowerUp() : base("powerup.png")
     {
 
     }

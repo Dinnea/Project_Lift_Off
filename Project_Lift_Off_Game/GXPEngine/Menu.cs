@@ -213,12 +213,13 @@ public class Menu : GameObject
             menuPress.Play();
             switchMenu = 0;
 
-            currentLevel = 1;
             _level1 = new FirstLevel();
-            AddChild(_level1);
-
             _hud = new HUD(_level1);
+            
+            currentLevel = 1;
+
             AddChild(_hud);
+            AddChild(_level1);            
 
             _level1.Translate(0, 100);
             _hud.Translate(5, 5);

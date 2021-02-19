@@ -6,7 +6,7 @@ using GXPEngine;								// GXPEngine contains the engine
 public class MyGame : Game
 {
 	Sound bckgMusic;
-	Sprite loading;
+	//Sprite loading;
 
 
 	public MyGame() : base(1280, 1005, false)		// Create a window that's 800x600 and NOT fullscreen

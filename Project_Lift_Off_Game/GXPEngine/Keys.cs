@@ -13,7 +13,7 @@ public class Keys : Sprite //Keys that need to be picked up by pgreen
     private int _relocTimed;
     private int _timeLeftToReloc;
 
-    public Keys() : base("triangle.png")
+    public Keys() : base("key.png")
     {
         SetScaleXY(0.5f, 0.5f);
     }

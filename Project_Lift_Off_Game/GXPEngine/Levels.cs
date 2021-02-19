@@ -56,7 +56,7 @@ public class FirstLevel : Level
     }
     public override void BuildLevel()
     {
-        levelBckg = new Sprite("background.png");
+        levelBckg = new Sprite("background1.png");
         AddChild(levelBckg);
         base.BuildLevel();
     }
@@ -113,7 +113,7 @@ public class FirstLevel : Level
 
         public override void BuildLevel()
         {
-            levelBckg = new Sprite("background.png");
+            levelBckg = new Sprite("background1.png");
             AddChild(levelBckg);
             base.BuildLevel();
         }
@@ -169,7 +169,7 @@ public class ThirdLevel : Level
     }
         public override void BuildLevel()
         {
-            levelBckg = new Sprite("background.png");
+            levelBckg = new Sprite("background1.png");
             AddChild(levelBckg);
             base.BuildLevel();
         }

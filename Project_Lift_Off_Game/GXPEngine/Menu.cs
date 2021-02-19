@@ -32,14 +32,21 @@ public class Menu : GameObject
     private HUD _hud;
     private Canvas _text;
 
+    private Sprite _instructions;
+
+    private bool _firstGo;
+
     //private Menu _menu;
 
     public static int switchMenu = 0; // Restarts, and resets menu again. (0 = start) (1 = gameover) (2 = reset to menu)
     public static int playerID = 0; // Winner in GameOver.cs
     public static int currentLevel; //Checks which level it is
-    public static int finalLevel = 3; //currently final level
+    public static int finalLevel = 2; //currently final level
     public Menu()
     {
+        _instructions = new Sprite("How_to_play.png");
+        _firstGo = true;
+
         //fonts
         fonts.AddFontFile("Gingerbread_House.ttf");
         fonts.AddFontFile("hazel_grace.ttf");
@@ -98,6 +105,7 @@ public class Menu : GameObject
             case 1:
                 _hasStarted = false;
                 _hasEnded = true;
+                _firstGo = false;
                 switch (currentLevel)
                 {
                     case 1:
@@ -110,6 +118,7 @@ public class Menu : GameObject
                         _level3.LateDestroy();
                         break;
                 }
+                _instructions.LateDestroy();
                 _hud.LateDestroy();
                 showGameOver();
                 break;
@@ -123,14 +132,37 @@ public class Menu : GameObject
                 playerID = 0;
                 break;
             case 3:
-                _hasStarted = true;
-                startLevel1();
-                if (_hasEnded == true)
+                if (_firstGo)
                 {
-                    _gameOver.LateDestroy();
-                    _hasEnded = false;
+                    AddChild(_instructions);
+
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        if (_instructions.HitTestPoint(Input.mouseX, Input.mouseY))
+                        {
+                            _hasStarted = true;
+                            startLevel1();
+                            if (_hasEnded == true)
+                            {
+                                _gameOver.LateDestroy();
+                                _hasEnded = false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    _hasStarted = true;
+                    startLevel1();
+                    if (_hasEnded == true)
+                    {
+                        _gameOver.LateDestroy();
+                        _hasEnded = false;
+                    }
                 }
                 break;
+
+
             case 4:
                 _hasStarted = true;
                 startLevel2();
@@ -224,6 +256,7 @@ public class Menu : GameObject
             _level1.Translate(0, 100);
             _hud.Translate(5, 5);
         }
+
     }
 
     void startLevel2()

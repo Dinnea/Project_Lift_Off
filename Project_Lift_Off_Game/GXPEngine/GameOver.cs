@@ -109,13 +109,17 @@ public class GameOver : GameObject
         _exitButton.SetOrigin(_exitButton.width / 2f, _exitButton.height / 2f);
 
         //TEXT
-        _text = new Canvas(1280, 1005);
+        _text = new Canvas(1280, 1005, false);
         AddChild(_text);
 
-        _text.graphics.DrawString("Next Level", font, Brushes.White, 131, 243);
+        if (Menu.currentLevel != Menu.finalLevel)
+        {
+            _text.graphics.DrawString("Next Level", font, Brushes.White, 131, 243);
+        }
         _text.graphics.DrawString("Restart", font, Brushes.White, 390, 243);
         _text.graphics.DrawString("Menu", font, Brushes.White, 640, 243);
         _text.graphics.DrawString("Quit", font, Brushes.White, 882, 243);
+        
     }
 
     void Update()
